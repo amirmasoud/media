@@ -1,7 +1,7 @@
 <template>
+  <Head>
+    <title>Media - Users</title>
+  </Head>
+
   Users
 </template>
-
-<script>
-export default {};
-</script>

@@ -1,11 +1,11 @@
 import { createApp, h } from 'vue';
-import { createInertiaApp } from '@inertiajs/inertia-vue3';
+import { createInertiaApp, Head, Link } from '@inertiajs/inertia-vue3';
 import { InertiaProgress } from '@inertiajs/progress';
 import Dashboard from "./Shared/Dashboard";
 
 createInertiaApp({
-  resolve: name => {
-    const page = require(`./Pages/${name}`).default;
+  resolve: async name => {
+    const page = (await import(`./Pages/${name}`)).default;
     page.layout = page.layout || Dashboard;
     return page;
   },
@@ -13,11 +13,15 @@ createInertiaApp({
   setup({ el, App, props, plugin }) {
     createApp({ render: () => h(App, props) })
       .use(plugin)
+      .component("Head", Head)
+      .component("Link", Link)
       .mount(el);
   },
+
+  title: title => `${title} - Media`,
 });
 
 InertiaProgress.init({
-  color: 'purple',
+  color: 'red',
   showSpinner: true,
 });

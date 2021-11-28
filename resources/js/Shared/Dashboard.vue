@@ -1,4 +1,5 @@
 <template>
+  <Head title="Media" />
   <div class="h-screen flex overflow-hidden bg-gray-100">
     <TransitionRoot
       as="template"
@@ -216,18 +217,9 @@
 
       <main class="flex-1 relative overflow-y-auto focus:outline-none">
         <div class="py-6">
-          <slot />
-          <!--<div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">-->
-          <!--  <h1 class="text-2xl font-semibold text-gray-900">-->
-          <!--  </h1>-->
-          <!--</div>-->
-          <!--<div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">-->
-          <!--  &lt;!&ndash; Replace with your content &ndash;&gt;-->
-          <!--  <div class="py-4">-->
-          <!--    <div class="border-4 border-dashed border-gray-200 rounded-lg h-96" />-->
-          <!--  </div>-->
-          <!--  &lt;!&ndash; /End replace &ndash;&gt;-->
-          <!--</div>-->
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+            <slot />
+          </div>
         </div>
       </main>
     </div>
@@ -247,14 +239,16 @@ import {
   TransitionRoot,
 } from '@headlessui/vue';
 import {
-  BellIcon, CogIcon,
+  BellIcon,
+  CogIcon,
   HomeIcon,
   MenuAlt2Icon,
   UsersIcon,
   XIcon,
 } from '@heroicons/vue/outline';
 import { SearchIcon } from '@heroicons/vue/solid';
-import { Link } from '@inertiajs/inertia-vue3';
+import { Link } from "@inertiajs/inertia-vue3";
+import { Head } from "@inertiajs/inertia-vue3";
 
 const navigation = [
   { name: 'Dashboard', href: '/dashboard', icon: HomeIcon },
@@ -282,6 +276,7 @@ export default {
     SearchIcon,
     XIcon,
     Link,
+    Head,
   },
   setup() {
     const sidebarOpen = ref(false);

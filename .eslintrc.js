@@ -5,6 +5,7 @@ module.exports = {
     'plugin:vue/base',
   ],
   rules: {
-    semi: [2, "always"]
+    semi: [2, "always"],
+    "object-curly-spacing":  [2, "always"],
   }
 };

@@ -16,7 +16,11 @@ use Inertia\Inertia;
 
 Route::prefix('dashboard')->group(function () {
     Route::get('/', function () {
-        return Inertia::render('Dashboard/Home');
+        sleep(2);
+
+        return Inertia::render('Dashboard/Home', [
+            'users' => \App\Http\Resources\UserResource::collection(\App\Models\User::paginate()),
+        ]);
     });
 
     Route::get('/users', function () {
