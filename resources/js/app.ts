@@ -1,7 +1,7 @@
 import { createApp, h } from 'vue';
-import { createInertiaApp, Head, Link } from '@inertiajs/inertia-vue3';
 import { InertiaProgress } from '@inertiajs/progress';
-import Dashboard from "./Shared/Dashboard";
+import { createInertiaApp, Head, Link, InertiaApp } from "@inertiajs/inertia-vue3";
+import Dashboard from "./Shared/Dashboard.vue";
 
 createInertiaApp({
   resolve: async name => {
@@ -10,8 +10,8 @@ createInertiaApp({
     return page;
   },
 
-  setup({ el, App, props, plugin }) {
-    createApp({ render: () => h(App, props) })
+  setup({ el, app, props, plugin }) {
+    createApp({ render: () => h(app, props) })
       .use(plugin)
       .component("Head", Head)
       .component("Link", Link)

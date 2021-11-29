@@ -16,15 +16,19 @@ use Inertia\Inertia;
 
 Route::prefix('dashboard')->group(function () {
     Route::get('/', function () {
-        sleep(2);
-
-        return Inertia::render('Dashboard/Home', [
-            'users' => \App\Http\Resources\UserResource::collection(\App\Models\User::paginate()),
-        ]);
+        return Inertia::render('Dashboard/Home');
     });
 
     Route::get('/users', function () {
-        return Inertia::render('Dashboard/Users');
+        $users = \App\Models\User::query()
+            ->when(Request::input('search'), fn ($query, $search) => $query->where('name', 'LIKE', '%'.$search.'%'))
+            ->paginate()
+            ->withQueryString();
+
+        return Inertia::render('Dashboard/Users', [
+            'users' => \App\Http\Resources\UserResource::collection($users),
+            'filters' => Request::only('search'),
+        ]);
     });
 
     Route::get('/settings', function () {
