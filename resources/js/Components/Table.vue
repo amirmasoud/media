@@ -106,42 +106,37 @@
 </template>
 
 <script lang="ts">
-import Paginator from "./Paginator.vue";
-import { defineComponent } from "@vue/runtime-core";
-import { Vue } from "vue-class-component";
+import Paginator from "@/Components/Paginator.vue";
+import { defineComponent, ref, watch } from "vue";
+import { Inertia } from "@inertiajs/inertia";
 
-@Component
-export default class Table extends Vue {
-  components: { Paginator }
+export default defineComponent({
+  components: { Paginator },
 
   props: {
-    records: Object,
-    filters: Object,
-  }
-}
+    records: {
+      type: Object,
+      required: true,
+    },
+    filters: {
+      type: Object,
+      required: true,
+    }
+  },
 
-// export default defineComponent({
-//   components: { Paginator },
-//   props: {
-//     records: Object,
-//     filters: Object,
-//   },
-// });
+  setup (props) {
+    let search = ref<string>(props.filters.search || '');
 
-// import { ref, watch } from "vue";
-// import { Inertia } from "@inertiajs/inertia";
-//
-// let props = defineProps({
-//   records: Object,
-//   filters: Object
-// });
-//
-// let search = ref(props.filters.search);
-//
-// watch(search, value => {
-//   Inertia.get('/dashboard/users', { search: value }, {
-//     preserveState: true,
-//     replace: true
-//   });
-// });
+    watch(search, value => {
+      Inertia.get('/dashboard/users', { ...(value !== '' && { search : value }) }, {
+        preserveState: true,
+        replace: true,
+      });
+    });
+
+    return {
+      search
+    };
+  },
+});
 </script>

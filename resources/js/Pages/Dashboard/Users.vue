@@ -14,14 +14,20 @@
 </template>
 
 <script lang="ts">
-import Table from "../../Components/Table.vue";
-import { defineComponent } from "@vue/runtime-core";
+import Table from "@/Components/Table.vue";
+import { defineComponent } from "vue";
 
 export default defineComponent({
   components: { Table },
   props: {
-    users: Object,
-    filters: Object,
+    users: {
+      type: Object,
+      required: true,
+    },
+    filters: {
+      type: Object,
+      required: true,
+    },
   }
 });
 </script>

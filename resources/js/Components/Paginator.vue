@@ -56,11 +56,15 @@
 
 <script lang="ts">
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/vue/outline";
-
-import { defineComponent } from "@vue/runtime-core";
+import { defineComponent } from "vue";
 
 export default defineComponent({
   components: { ChevronRightIcon, ChevronLeftIcon },
-  props: { links: Array },
+  props: {
+    links: {
+      type: Array,
+      required: true,
+    }
+  },
 });
 </script>
