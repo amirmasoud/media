@@ -226,8 +226,8 @@
   </div>
 </template>
 
-<script lang="ts">
-import { ref } from 'vue';
+<script>
+import { defineComponent, ref } from 'vue';
 import {
   Dialog,
   DialogOverlay,
@@ -249,7 +249,6 @@ import {
 import { SearchIcon } from '@heroicons/vue/solid';
 import { Link } from "@inertiajs/inertia-vue3";
 import { Head } from "@inertiajs/inertia-vue3";
-import { defineComponent } from "@vue/runtime-core";
 
 const navigation = [
   { name: 'Dashboard', href: '/dashboard', icon: HomeIcon },
@@ -262,7 +261,7 @@ const userNavigation = [
   { name: 'Sign out', href: '#' },
 ];
 
-export default defineComponent({
+defineComponent({
   components: {
     Dialog,
     DialogOverlay,
@@ -279,6 +278,7 @@ export default defineComponent({
     Link,
     Head,
   },
+
   setup() {
     const sidebarOpen = ref(false);
 

@@ -35,40 +35,18 @@
   </form>
 </template>
 
-<script lang="ts">
-import { defineComponent, reactive } from "vue";
-import { Inertia } from '@inertiajs/inertia';
-import { useForm } from "@inertiajs/inertia-vue3";
+<script>
+import { useForm } from '@inertiajs/inertia-vue3';
 
-const form = useForm<any>(reactive({
-  email: null,
-  password: null,
-  name: null,
-}));
-
-function submit() {
-  Inertia.post('/dashboard/users', form);
-}
-
-export default defineComponent({
+export default {
   setup () {
-    return { form, submit };
-  }
-});
+    const form = useForm({
+      email: null,
+      password: null,
+      name: null,
+    });
+
+    return { form };
+  },
+};
 </script>
-
-<!--<script>-->
-<!--import { useForm } from '@inertiajs/inertia-vue3';-->
-
-<!--export default {-->
-<!--  setup () {-->
-<!--    const form = useForm({-->
-<!--      email: null,-->
-<!--      password: null,-->
-<!--      name: null,-->
-<!--    });-->
-
-<!--    return { form };-->
-<!--  },-->
-<!--};-->
-<!--</script>-->

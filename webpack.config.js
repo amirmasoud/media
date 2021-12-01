@@ -6,25 +6,9 @@ const path = require('path');
 
 module.exports = {
   resolve: {
-    extensions: ['.js', '.vue', 'ts'],
+    extensions: ['.js', '.vue'],
       alias: {
       '@': path.resolve(__dirname, './resources/js')
     },
-    module: {
-      rules: [
-        {
-          test: path.join(__dirname, 'resources/js/**/*.tsx'),
-          loader: 'ts-loader',
-          options: {
-            appendTsSuffixTo: [path.join(__dirname, 'resources/js/**/*.vue')],
-          },
-          exclude: /node_modules/,
-        },
-        {
-          test: path.join(__dirname, 'resources/js/**/*.tsx'),
-          loader: 'vue-loader',
-        }
-      ]
-    }
   },
 };
