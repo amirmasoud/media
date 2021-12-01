@@ -25,10 +25,26 @@ Route::prefix('dashboard')->group(function () {
             ->paginate()
             ->withQueryString();
 
-        return Inertia::render('Dashboard/Users', [
+        return Inertia::render('Dashboard/Users/Index', [
             'users' => \App\Http\Resources\UserResource::collection($users),
             'filters' => Request::only('search'),
         ]);
+    });
+
+    Route::post('/users', function () {
+        $validated = Validator::validate(Request::all(), [
+            'name' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|min:6',
+        ]);
+
+        \App\Models\User::create($validated);
+
+        return redirect()->to('/dashboard/users');
+    });
+
+    Route::get('/users/create', function () {
+        return Inertia::render('Dashboard/Users/Create');
     });
 
     Route::get('/settings', function () {

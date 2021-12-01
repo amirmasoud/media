@@ -669,16 +669,6 @@ var map = {
 		"./resources/js/Pages/Dashboard/Settings.vue",
 		"resources_js_Pages_Dashboard_Settings_vue"
 	],
-	"./Dashboard/Users": [
-		"./resources/js/Pages/Dashboard/Users.vue",
-		"/js/vendor",
-		"resources_js_Pages_Dashboard_Users_vue"
-	],
-	"./Dashboard/Users.vue": [
-		"./resources/js/Pages/Dashboard/Users.vue",
-		"/js/vendor",
-		"resources_js_Pages_Dashboard_Users_vue"
-	],
 	"./Dashboard/Users/Create": [
 		"./resources/js/Pages/Dashboard/Users/Create.vue",
 		"resources_js_Pages_Dashboard_Users_Create_vue"

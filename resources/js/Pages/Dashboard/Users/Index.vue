@@ -13,14 +13,21 @@
   />
 </template>
 
-<script>
-import Table from '@/Components/Table';
+<script lang="ts">
+import Table from "@/Components/Table.vue";
+import { defineComponent } from "vue";
 
-export default {
+export default defineComponent({
   components: { Table },
   props: {
-    users: Object,
-    filters: Object,
+    users: {
+      type: Object,
+      required: true,
+    },
+    filters: {
+      type: Object,
+      required: true,
+    },
   }
-};
+});
 </script>
