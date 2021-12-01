@@ -10,14 +10,12 @@
   <Table
     :records="users"
     :filters="filters"
+    endpoint="/dashboard/users"
   />
 </template>
 
-<script>
+<script setup>
 import Table from "@/Components/Table";
 
-export default {
-  components: { Table },
-  props: { users: Object, filters: Object }
-};
+defineProps({ users: Object, filters: Object });
 </script>
