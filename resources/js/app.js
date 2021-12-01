@@ -1,12 +1,13 @@
 import { createApp, h } from 'vue';
 import { createInertiaApp, Head, Link } from '@inertiajs/inertia-vue3';
 import { InertiaProgress } from '@inertiajs/progress';
-import Dashboard from "./Shared/Dashboard";
+import Dashboard from '@/Shared/Dashboard';
+import Empty from '@/Shared/Empty';
 
 createInertiaApp({
   resolve: async name => {
     const page = (await import(`./Pages/${name}`)).default;
-    page.layout = page.layout || Dashboard;
+    page.layout = name.startsWith('Auth/') ? Empty : page.layout || Dashboard;
     return page;
   },
 
@@ -22,6 +23,6 @@ createInertiaApp({
 });
 
 InertiaProgress.init({
-  color: 'red',
+  color: 'blue',
   showSpinner: true,
 });

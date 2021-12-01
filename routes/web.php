@@ -14,6 +14,10 @@ use Inertia\Inertia;
 |
 */
 
+Route::get('login', function () {
+    return Inertia::render('Auth/Login');
+});
+
 Route::prefix('dashboard')->group(function () {
     Route::get('/', function () {
         return Inertia::render('Dashboard/Home');
