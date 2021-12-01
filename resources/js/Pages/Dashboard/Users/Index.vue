@@ -18,6 +18,6 @@ import Table from "@/Components/Table";
 
 export default {
   components: { Table },
-  props: { users, filters }
+  props: { users: Object, filters: Object }
 };
 </script>

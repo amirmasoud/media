@@ -105,38 +105,56 @@
   </div>
 </template>
 
-<script lang="ts">
-import Paginator from "@/Components/Paginator.vue";
-import { defineComponent, ref, watch } from "vue";
-import { Inertia } from "@inertiajs/inertia";
+<script setup>
+import { ref, watch } from 'vue';
+import { Inertia } from '@inertiajs/inertia';
+import Paginator from '@/Components/Paginator';
+import debounce from "lodash/debounce";
 
-export default defineComponent({
-  components: { Paginator },
-
-  props: {
-    records: {
-      type: Object,
-      required: true,
-    },
-    filters: {
-      type: Object,
-      required: true,
-    }
-  },
-
-  setup (props) {
-    let search = ref<string>(props.filters.search || '');
-
-    watch(search, value => {
-      Inertia.get('/dashboard/users', { ...(value !== '' && { search : value }) }, {
-        preserveState: true,
-        replace: true,
-      });
-    });
-
-    return {
-      search
-    };
-  },
+let props = defineProps({
+  records: Object,
+  filters: Object,
 });
+
+let search = ref(props.filters.search);
+
+watch(search, debounce(function (value) {
+  Inertia.get('/dashboard/users', { search: value }, { preserveState: true, replace: true });
+}, 300));
 </script>
+
+<!--<script lang="ts">-->
+<!--import Paginator from "@/Components/Paginator.vue";-->
+<!--import { defineComponent, ref, watch } from "vue";-->
+<!--import { Inertia } from "@inertiajs/inertia";-->
+
+<!--export default defineComponent({-->
+<!--  components: { Paginator },-->
+
+<!--  props: {-->
+<!--    records: {-->
+<!--      type: Object,-->
+<!--      required: true,-->
+<!--    },-->
+<!--    filters: {-->
+<!--      type: Object,-->
+<!--      required: true,-->
+<!--    }-->
+<!--  },-->
+
+<!--  setup (props) {-->
+<!--    let search = ref<string>(props.filters.search || '');-->
+
+<!--    watch(search, value => {-->
+<!--      Inertia.get('/dashboard/users', { ...(value !== '' && { search : value }) }, {-->
+<!--        preserveState: true,-->
+<!--        replace: true,-->
+<!--      });-->
+<!--    });-->
+
+<!--    return {-->
+<!--      search-->
+<!--    };-->
+<!--  },-->
+<!--});-->
+<!--</script>-->

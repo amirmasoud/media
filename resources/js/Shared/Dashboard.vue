@@ -227,7 +227,7 @@
 </template>
 
 <script>
-import { defineComponent, ref } from 'vue';
+import { ref } from 'vue';
 import {
   Dialog,
   DialogOverlay,
@@ -261,7 +261,7 @@ const userNavigation = [
   { name: 'Sign out', href: '#' },
 ];
 
-defineComponent({
+export default {
   components: {
     Dialog,
     DialogOverlay,
@@ -278,7 +278,6 @@ defineComponent({
     Link,
     Head,
   },
-
   setup() {
     const sidebarOpen = ref(false);
 
@@ -288,5 +287,5 @@ defineComponent({
       sidebarOpen,
     };
   },
-});
+};
 </script>
