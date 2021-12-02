@@ -16571,6 +16571,61 @@
      
 }
 
+    namespace Spatie\Health\Facades { 
+            /**
+     * 
+     *
+     * @see \Spatie\Health\Health
+     */ 
+        class Health {
+                    /**
+         * 
+         *
+         * @param \Spatie\Health\array<int,  Check> $checks
+         * @static 
+         */ 
+        public static function checks($checks)
+        {
+                        /** @var \Spatie\Health\Health $instance */
+                        return $instance->checks($checks);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function clearChecks()
+        {
+                        /** @var \Spatie\Health\Health $instance */
+                        return $instance->clearChecks();
+        }
+                    /**
+         * 
+         *
+         * @return \Spatie\Health\Collection<int, Check>
+         * @static 
+         */ 
+        public static function registeredChecks()
+        {
+                        /** @var \Spatie\Health\Health $instance */
+                        return $instance->registeredChecks();
+        }
+                    /**
+         * 
+         *
+         * @return \Spatie\Health\Collection<int, ResultStore>
+         * @static 
+         */ 
+        public static function resultStores()
+        {
+                        /** @var \Spatie\Health\Health $instance */
+                        return $instance->resultStores();
+        }
+         
+    }
+     
+}
+
     namespace Illuminate\Http { 
             /**
      * 
@@ -20177,6 +20232,7 @@ namespace  {
             class Flare extends \Facade\Ignition\Facades\Flare {}
             class Clockwork extends \Clockwork\Support\Laravel\Facade {}
             class Socialite extends \Laravel\Socialite\Facades\Socialite {}
+            class Skeleton extends \Spatie\Health\Facades\Health {}
      
 }
 
