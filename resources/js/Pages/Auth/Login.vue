@@ -1,4 +1,5 @@
 <template>
+  <Head title="Login" />
   <div class="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
       <img
@@ -137,7 +138,7 @@
 
             <div>
               <a
-                href="#"
+                :href="github"
                 class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
               >
                 <span class="sr-only">Sign in with GitHub</span>
@@ -155,4 +156,8 @@
 import Facebook from "@/Components/Icons/Facebook";
 import Twitter from "@/Components/Icons/Twitter";
 import GitHub from "@/Components/Icons/GitHub";
+
+defineProps({
+  'github': String,
+});
 </script>

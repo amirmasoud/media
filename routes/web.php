@@ -15,7 +15,35 @@ use Inertia\Inertia;
 */
 
 Route::get('login', function () {
-    return Inertia::render('Auth/Login');
+    return Inertia::render('Auth/Login', [
+        'github' => \Laravel\Socialite\Facades\Socialite::driver('github')->redirect()->getTargetUrl(),
+    ]);
+});
+
+Route::get('auth/github/callback', function () {
+    $githubUser = Socialite::driver('github')->user();
+
+    $user = \App\Models\User::where('provider', \App\Enums\ProviderEnum::GITHUB->value)->where('provider_id', $githubUser->id)->first();
+
+
+    if ($user) {
+        $user->update([
+            'provider_token' => $githubUser->token,
+            'provider_refresh_token' => $githubUser->refreshToken,
+        ]);
+    } else {
+        $user = \App\Models\User::create([
+            'name' => $githubUser->name,
+            'email' => $githubUser->email,
+            'provider_id' => $githubUser->id,
+            'provider_token' => $githubUser->token,
+            'provider_refresh_token' => $githubUser->refreshToken,
+        ]);
+    }
+
+    Auth::login($user);
+
+    return redirect('/dashboard');
 });
 
 Route::prefix('dashboard')->group(function () {
