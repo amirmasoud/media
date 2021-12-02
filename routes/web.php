@@ -17,6 +17,7 @@ use Inertia\Inertia;
 Route::get('login', function () {
     return Inertia::render('Auth/Login', [
         'github' => \Laravel\Socialite\Facades\Socialite::driver('github')->redirect()->getTargetUrl(),
+        'google' => \Laravel\Socialite\Facades\Socialite::driver('google')->redirect()->getTargetUrl(),
     ]);
 });
 
@@ -38,6 +39,33 @@ Route::get('auth/github/callback', function () {
             'provider_id' => $githubUser->id,
             'provider_token' => $githubUser->token,
             'provider_refresh_token' => $githubUser->refreshToken,
+        ]);
+    }
+
+    Auth::login($user);
+
+    return redirect('/dashboard');
+});
+
+Route::get('auth/google/callback', function () {
+    $googleUser = Socialite::driver('google')->user();
+
+    $user = \App\Models\User::where('provider', \App\Enums\ProviderEnum::GOOGLE->value)->where('provider_id', $googleUser->id)->first();
+
+
+    if ($user) {
+        $user->update([
+            'provider_token' => $googleUser->token,
+            'provider_refresh_token' => $googleUser->refreshToken,
+        ]);
+    } else {
+        $user = \App\Models\User::create([
+            'name' => $googleUser->name,
+            'email' => $googleUser->email,
+            'provider' => \App\Enums\ProviderEnum::GOOGLE->value,
+            'provider_id' => $googleUser->id,
+            'provider_token' => $googleUser->token,
+            'provider_refresh_token' => $googleUser->refreshToken,
         ]);
     }
 
