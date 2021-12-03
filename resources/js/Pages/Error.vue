@@ -1,29 +1,39 @@
 <template>
-  <main
-    class="min-h-screen bg-cover bg-top sm:bg-top"
-    style="background-image: url('https://images.unsplash.com/photo-1545972154-9bb223aac798?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=3050&q=80&exp=8&con=-15&sat=-75');"
-  >
-    <div class="max-w-7xl mx-auto px-4 py-16 text-center sm:px-6 sm:py-24 lg:px-8 lg:py-48">
-      <p class="text-sm font-semibold text-black text-opacity-50 uppercase tracking-wide">
-        {{ status }}
-      </p>
-      <h1 class="mt-2 text-4xl font-extrabold text-white tracking-tight sm:text-5xl">
-        {{ title }}
-      </h1>
-      <p class="mt-2 text-lg font-medium text-black text-opacity-50">
-        {{ description }}
-      </p>
-      <div class="mt-6">
-        <a
-          href="#"
-          class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-black text-opacity-75 bg-white bg-opacity-75 sm:bg-opacity-25 sm:hover:bg-opacity-50"
-        >
-          Go back home
-        </a>
-      </div>
+  <div class="bg-white min-h-screen px-4 py-16 sm:px-6 sm:py-24 md:grid md:place-items-center lg:px-8">
+    <div class="max-w-max mx-auto">
+      <main class="sm:flex">
+        <p class="text-4xl font-extrabold text-indigo-600 sm:text-5xl">
+          {{ status }}
+        </p>
+        <div class="sm:ml-6">
+          <div class="sm:border-l sm:border-gray-200 sm:pl-6">
+            <h1 class="text-4xl font-extrabold text-gray-900 tracking-tight sm:text-5xl">
+              {{ title }}
+            </h1>
+            <p class="mt-1 text-base text-gray-500">
+              {{ description }}
+            </p>
+          </div>
+          <div class="mt-10 flex space-x-3 sm:border-l sm:border-transparent sm:pl-6">
+            <a
+              href="#"
+              class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            >
+              Go back home
+            </a>
+            <a
+              href="#"
+              class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            >
+              Contact support
+            </a>
+          </div>
+        </div>
+      </main>
     </div>
-  </main>
+  </div>
 </template>
+
 
 <script>
 import Empty from '@/Shared/Empty';
@@ -36,10 +46,10 @@ export default {
   computed: {
     title() {
       return {
-        503: '503: Service Unavailable',
-        500: '500: Server Error',
-        404: '404: Page Not Found',
-        403: '403: Forbidden',
+        503: 'Service Unavailable',
+        500: 'Server Error',
+        404: 'Page Not Found',
+        403: 'orbidden',
       }[this.status];
     },
     description() {
@@ -50,6 +60,6 @@ export default {
         403: 'Sorry, you are forbidden from accessing this page.',
       }[this.status];
     },
-  },
+  }
 };
 </script>

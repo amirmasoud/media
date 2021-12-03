@@ -14,7 +14,7 @@ use Inertia\Inertia;
 |
 */
 Route::get('/', function () {
-    abort(500);
+    abort(503);
 });
 
 Route::get('login', function () {
