@@ -607,6 +607,315 @@ var DialogDescription = _description_description_esm_js__WEBPACK_IMPORTED_MODULE
 
 /***/ }),
 
+/***/ "./node_modules/@headlessui/vue/dist/components/disclosure/disclosure.esm.js":
+/*!***********************************************************************************!*\
+  !*** ./node_modules/@headlessui/vue/dist/components/disclosure/disclosure.esm.js ***!
+  \***********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Disclosure": () => (/* binding */ Disclosure),
+/* harmony export */   "DisclosureButton": () => (/* binding */ DisclosureButton),
+/* harmony export */   "DisclosurePanel": () => (/* binding */ DisclosurePanel)
+/* harmony export */ });
+/* harmony import */ var _virtual_rollupPluginBabelHelpers_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../_virtual/_rollupPluginBabelHelpers.js */ "./node_modules/@headlessui/vue/dist/_virtual/_rollupPluginBabelHelpers.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var _utils_match_esm_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utils/match.esm.js */ "./node_modules/@headlessui/vue/dist/utils/match.esm.js");
+/* harmony import */ var _utils_render_esm_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../utils/render.esm.js */ "./node_modules/@headlessui/vue/dist/utils/render.esm.js");
+/* harmony import */ var _keyboard_esm_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../keyboard.esm.js */ "./node_modules/@headlessui/vue/dist/keyboard.esm.js");
+/* harmony import */ var _hooks_use_id_esm_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../hooks/use-id.esm.js */ "./node_modules/@headlessui/vue/dist/hooks/use-id.esm.js");
+/* harmony import */ var _utils_dom_esm_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../utils/dom.esm.js */ "./node_modules/@headlessui/vue/dist/utils/dom.esm.js");
+/* harmony import */ var _internal_open_closed_esm_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../internal/open-closed.esm.js */ "./node_modules/@headlessui/vue/dist/internal/open-closed.esm.js");
+/* harmony import */ var _hooks_use_resolve_button_type_esm_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../hooks/use-resolve-button-type.esm.js */ "./node_modules/@headlessui/vue/dist/hooks/use-resolve-button-type.esm.js");
+
+
+
+
+
+
+
+
+
+
+var DisclosureStates;
+
+(function (DisclosureStates) {
+  DisclosureStates[DisclosureStates["Open"] = 0] = "Open";
+  DisclosureStates[DisclosureStates["Closed"] = 1] = "Closed";
+})(DisclosureStates || (DisclosureStates = {}));
+
+var DisclosureContext = /*#__PURE__*/Symbol('DisclosureContext');
+
+function useDisclosureContext(component) {
+  var context = (0,vue__WEBPACK_IMPORTED_MODULE_0__.inject)(DisclosureContext, null);
+
+  if (context === null) {
+    var err = new Error("<" + component + " /> is missing a parent <Disclosure /> component.");
+    if (Error.captureStackTrace) Error.captureStackTrace(err, useDisclosureContext);
+    throw err;
+  }
+
+  return context;
+}
+
+var DisclosurePanelContext = /*#__PURE__*/Symbol('DisclosurePanelContext');
+
+function useDisclosurePanelContext() {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.inject)(DisclosurePanelContext, null);
+} // ---
+
+
+var Disclosure = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.defineComponent)({
+  name: 'Disclosure',
+  props: {
+    as: {
+      type: [Object, String],
+      "default": 'template'
+    },
+    defaultOpen: {
+      type: [Boolean],
+      "default": false
+    }
+  },
+  setup: function setup(props, _ref) {
+    var slots = _ref.slots,
+        attrs = _ref.attrs;
+    var buttonId = "headlessui-disclosure-button-" + (0,_hooks_use_id_esm_js__WEBPACK_IMPORTED_MODULE_1__.useId)();
+    var panelId = "headlessui-disclosure-panel-" + (0,_hooks_use_id_esm_js__WEBPACK_IMPORTED_MODULE_1__.useId)();
+    var disclosureState = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(props.defaultOpen ? DisclosureStates.Open : DisclosureStates.Closed);
+    var panelRef = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(null);
+    var buttonRef = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(null);
+    var api = {
+      buttonId: buttonId,
+      panelId: panelId,
+      disclosureState: disclosureState,
+      panel: panelRef,
+      button: buttonRef,
+      toggleDisclosure: function toggleDisclosure() {
+        var _match;
+
+        disclosureState.value = (0,_utils_match_esm_js__WEBPACK_IMPORTED_MODULE_2__.match)(disclosureState.value, (_match = {}, _match[DisclosureStates.Open] = DisclosureStates.Closed, _match[DisclosureStates.Closed] = DisclosureStates.Open, _match));
+      },
+      closeDisclosure: function closeDisclosure() {
+        if (disclosureState.value === DisclosureStates.Closed) return;
+        disclosureState.value = DisclosureStates.Closed;
+      },
+      close: function close(focusableElement) {
+        api.closeDisclosure();
+
+        var restoreElement = function () {
+          if (!focusableElement) return (0,_utils_dom_esm_js__WEBPACK_IMPORTED_MODULE_3__.dom)(api.button);
+          if (focusableElement instanceof HTMLElement) return focusableElement;
+          if (focusableElement.value instanceof HTMLElement) return (0,_utils_dom_esm_js__WEBPACK_IMPORTED_MODULE_3__.dom)(focusableElement);
+          return (0,_utils_dom_esm_js__WEBPACK_IMPORTED_MODULE_3__.dom)(api.button);
+        }();
+
+        restoreElement == null ? void 0 : restoreElement.focus();
+      }
+    };
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.provide)(DisclosureContext, api);
+    (0,_internal_open_closed_esm_js__WEBPACK_IMPORTED_MODULE_4__.useOpenClosedProvider)((0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
+      var _match2;
+
+      return (0,_utils_match_esm_js__WEBPACK_IMPORTED_MODULE_2__.match)(disclosureState.value, (_match2 = {}, _match2[DisclosureStates.Open] = _internal_open_closed_esm_js__WEBPACK_IMPORTED_MODULE_4__.State.Open, _match2[DisclosureStates.Closed] = _internal_open_closed_esm_js__WEBPACK_IMPORTED_MODULE_4__.State.Closed, _match2));
+    }));
+    return function () {
+      var passThroughProps = (0,_virtual_rollupPluginBabelHelpers_js__WEBPACK_IMPORTED_MODULE_5__.objectWithoutPropertiesLoose)(props, ["defaultOpen"]);
+
+      var slot = {
+        open: disclosureState.value === DisclosureStates.Open,
+        close: api.close
+      };
+      return (0,_utils_render_esm_js__WEBPACK_IMPORTED_MODULE_6__.render)({
+        props: passThroughProps,
+        slot: slot,
+        slots: slots,
+        attrs: attrs,
+        name: 'Disclosure'
+      });
+    };
+  }
+}); // ---
+
+var DisclosureButton = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.defineComponent)({
+  name: 'DisclosureButton',
+  props: {
+    as: {
+      type: [Object, String],
+      "default": 'button'
+    },
+    disabled: {
+      type: [Boolean],
+      "default": false
+    }
+  },
+  render: function render$1() {
+    var api = useDisclosureContext('DisclosureButton');
+    var slot = {
+      open: api.disclosureState.value === DisclosureStates.Open
+    };
+    var propsWeControl = this.isWithinPanel ? {
+      ref: 'el',
+      type: this.type,
+      onClick: this.handleClick,
+      onKeydown: this.handleKeyDown
+    } : {
+      id: this.id,
+      ref: 'el',
+      type: this.type,
+      'aria-expanded': this.$props.disabled ? undefined : api.disclosureState.value === DisclosureStates.Open,
+      'aria-controls': (0,_utils_dom_esm_js__WEBPACK_IMPORTED_MODULE_3__.dom)(api.panel) ? api.panelId : undefined,
+      disabled: this.$props.disabled ? true : undefined,
+      onClick: this.handleClick,
+      onKeydown: this.handleKeyDown,
+      onKeyup: this.handleKeyUp
+    };
+    return (0,_utils_render_esm_js__WEBPACK_IMPORTED_MODULE_6__.render)({
+      props: (0,_virtual_rollupPluginBabelHelpers_js__WEBPACK_IMPORTED_MODULE_5__["extends"])({}, this.$props, propsWeControl),
+      slot: slot,
+      attrs: this.$attrs,
+      slots: this.$slots,
+      name: 'DisclosureButton'
+    });
+  },
+  setup: function setup(props, _ref2) {
+    var attrs = _ref2.attrs;
+    var api = useDisclosureContext('DisclosureButton');
+    var panelContext = useDisclosurePanelContext();
+    var isWithinPanel = panelContext === null ? false : panelContext === api.panelId;
+    var elementRef = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(null);
+
+    if (!isWithinPanel) {
+      (0,vue__WEBPACK_IMPORTED_MODULE_0__.watchEffect)(function () {
+        api.button.value = elementRef.value;
+      });
+    }
+
+    return {
+      isWithinPanel: isWithinPanel,
+      id: api.buttonId,
+      el: elementRef,
+      type: (0,_hooks_use_resolve_button_type_esm_js__WEBPACK_IMPORTED_MODULE_7__.useResolveButtonType)((0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
+        return {
+          as: props.as,
+          type: attrs.type
+        };
+      }), elementRef),
+      handleClick: function handleClick() {
+        if (props.disabled) return;
+
+        if (isWithinPanel) {
+          var _dom;
+
+          api.toggleDisclosure();
+          (_dom = (0,_utils_dom_esm_js__WEBPACK_IMPORTED_MODULE_3__.dom)(api.button)) == null ? void 0 : _dom.focus();
+        } else {
+          api.toggleDisclosure();
+        }
+      },
+      handleKeyDown: function handleKeyDown(event) {
+        var _dom2;
+
+        if (props.disabled) return;
+
+        if (isWithinPanel) {
+          switch (event.key) {
+            case _keyboard_esm_js__WEBPACK_IMPORTED_MODULE_8__.Keys.Space:
+            case _keyboard_esm_js__WEBPACK_IMPORTED_MODULE_8__.Keys.Enter:
+              event.preventDefault();
+              event.stopPropagation();
+              api.toggleDisclosure();
+              (_dom2 = (0,_utils_dom_esm_js__WEBPACK_IMPORTED_MODULE_3__.dom)(api.button)) == null ? void 0 : _dom2.focus();
+              break;
+          }
+        } else {
+          switch (event.key) {
+            case _keyboard_esm_js__WEBPACK_IMPORTED_MODULE_8__.Keys.Space:
+            case _keyboard_esm_js__WEBPACK_IMPORTED_MODULE_8__.Keys.Enter:
+              event.preventDefault();
+              event.stopPropagation();
+              api.toggleDisclosure();
+              break;
+          }
+        }
+      },
+      handleKeyUp: function handleKeyUp(event) {
+        switch (event.key) {
+          case _keyboard_esm_js__WEBPACK_IMPORTED_MODULE_8__.Keys.Space:
+            // Required for firefox, event.preventDefault() in handleKeyDown for
+            // the Space key doesn't cancel the handleKeyUp, which in turn
+            // triggers a *click*.
+            event.preventDefault();
+            break;
+        }
+      }
+    };
+  }
+}); // ---
+
+var DisclosurePanel = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.defineComponent)({
+  name: 'DisclosurePanel',
+  props: {
+    as: {
+      type: [Object, String],
+      "default": 'div'
+    },
+    "static": {
+      type: Boolean,
+      "default": false
+    },
+    unmount: {
+      type: Boolean,
+      "default": true
+    }
+  },
+  render: function render$1() {
+    var api = useDisclosureContext('DisclosurePanel');
+    var slot = {
+      open: api.disclosureState.value === DisclosureStates.Open,
+      close: api.close
+    };
+    var propsWeControl = {
+      id: this.id,
+      ref: 'el'
+    };
+    return (0,_utils_render_esm_js__WEBPACK_IMPORTED_MODULE_6__.render)({
+      props: (0,_virtual_rollupPluginBabelHelpers_js__WEBPACK_IMPORTED_MODULE_5__["extends"])({}, this.$props, propsWeControl),
+      slot: slot,
+      attrs: this.$attrs,
+      slots: this.$slots,
+      features: _utils_render_esm_js__WEBPACK_IMPORTED_MODULE_6__.Features.RenderStrategy | _utils_render_esm_js__WEBPACK_IMPORTED_MODULE_6__.Features.Static,
+      visible: this.visible,
+      name: 'DisclosurePanel'
+    });
+  },
+  setup: function setup() {
+    var api = useDisclosureContext('DisclosurePanel');
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.provide)(DisclosurePanelContext, api.panelId);
+    var usesOpenClosedState = (0,_internal_open_closed_esm_js__WEBPACK_IMPORTED_MODULE_4__.useOpenClosed)();
+    var visible = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
+      if (usesOpenClosedState !== null) {
+        return usesOpenClosedState.value === _internal_open_closed_esm_js__WEBPACK_IMPORTED_MODULE_4__.State.Open;
+      }
+
+      return api.disclosureState.value === DisclosureStates.Open;
+    });
+    return {
+      id: api.panelId,
+      el: api.panel,
+      visible: visible
+    };
+  }
+});
+
+
+//# sourceMappingURL=disclosure.esm.js.map
+
+
+/***/ }),
+
 /***/ "./node_modules/@headlessui/vue/dist/components/menu/menu.esm.js":
 /*!***********************************************************************!*\
   !*** ./node_modules/@headlessui/vue/dist/components/menu/menu.esm.js ***!
@@ -1218,6 +1527,653 @@ var MenuItem = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.defineComponent)
 
 
 //# sourceMappingURL=menu.esm.js.map
+
+
+/***/ }),
+
+/***/ "./node_modules/@headlessui/vue/dist/components/popover/popover.esm.js":
+/*!*****************************************************************************!*\
+  !*** ./node_modules/@headlessui/vue/dist/components/popover/popover.esm.js ***!
+  \*****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Popover": () => (/* binding */ Popover),
+/* harmony export */   "PopoverButton": () => (/* binding */ PopoverButton),
+/* harmony export */   "PopoverGroup": () => (/* binding */ PopoverGroup),
+/* harmony export */   "PopoverOverlay": () => (/* binding */ PopoverOverlay),
+/* harmony export */   "PopoverPanel": () => (/* binding */ PopoverPanel)
+/* harmony export */ });
+/* harmony import */ var _virtual_rollupPluginBabelHelpers_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../_virtual/_rollupPluginBabelHelpers.js */ "./node_modules/@headlessui/vue/dist/_virtual/_rollupPluginBabelHelpers.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var _utils_match_esm_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utils/match.esm.js */ "./node_modules/@headlessui/vue/dist/utils/match.esm.js");
+/* harmony import */ var _utils_render_esm_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../utils/render.esm.js */ "./node_modules/@headlessui/vue/dist/utils/render.esm.js");
+/* harmony import */ var _keyboard_esm_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../keyboard.esm.js */ "./node_modules/@headlessui/vue/dist/keyboard.esm.js");
+/* harmony import */ var _hooks_use_id_esm_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../hooks/use-id.esm.js */ "./node_modules/@headlessui/vue/dist/hooks/use-id.esm.js");
+/* harmony import */ var _utils_focus_management_esm_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../utils/focus-management.esm.js */ "./node_modules/@headlessui/vue/dist/utils/focus-management.esm.js");
+/* harmony import */ var _hooks_use_window_event_esm_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../hooks/use-window-event.esm.js */ "./node_modules/@headlessui/vue/dist/hooks/use-window-event.esm.js");
+/* harmony import */ var _utils_dom_esm_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../utils/dom.esm.js */ "./node_modules/@headlessui/vue/dist/utils/dom.esm.js");
+/* harmony import */ var _internal_open_closed_esm_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../internal/open-closed.esm.js */ "./node_modules/@headlessui/vue/dist/internal/open-closed.esm.js");
+/* harmony import */ var _hooks_use_resolve_button_type_esm_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../hooks/use-resolve-button-type.esm.js */ "./node_modules/@headlessui/vue/dist/hooks/use-resolve-button-type.esm.js");
+
+
+
+
+
+
+
+
+
+
+
+
+var PopoverStates;
+
+(function (PopoverStates) {
+  PopoverStates[PopoverStates["Open"] = 0] = "Open";
+  PopoverStates[PopoverStates["Closed"] = 1] = "Closed";
+})(PopoverStates || (PopoverStates = {}));
+
+var PopoverContext = /*#__PURE__*/Symbol('PopoverContext');
+
+function usePopoverContext(component) {
+  var context = (0,vue__WEBPACK_IMPORTED_MODULE_0__.inject)(PopoverContext, null);
+
+  if (context === null) {
+    var err = new Error("<" + component + " /> is missing a parent <" + Popover.name + " /> component.");
+    if (Error.captureStackTrace) Error.captureStackTrace(err, usePopoverContext);
+    throw err;
+  }
+
+  return context;
+}
+
+var PopoverGroupContext = /*#__PURE__*/Symbol('PopoverGroupContext');
+
+function usePopoverGroupContext() {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.inject)(PopoverGroupContext, null);
+}
+
+var PopoverPanelContext = /*#__PURE__*/Symbol('PopoverPanelContext');
+
+function usePopoverPanelContext() {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.inject)(PopoverPanelContext, null);
+} // ---
+
+
+var Popover = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.defineComponent)({
+  name: 'Popover',
+  props: {
+    as: {
+      type: [Object, String],
+      "default": 'div'
+    }
+  },
+  setup: function setup(props, _ref) {
+    var slots = _ref.slots,
+        attrs = _ref.attrs;
+    var buttonId = "headlessui-popover-button-" + (0,_hooks_use_id_esm_js__WEBPACK_IMPORTED_MODULE_1__.useId)();
+    var panelId = "headlessui-popover-panel-" + (0,_hooks_use_id_esm_js__WEBPACK_IMPORTED_MODULE_1__.useId)();
+    var popoverState = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(PopoverStates.Closed);
+    var button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(null);
+    var panel = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(null);
+    var api = {
+      popoverState: popoverState,
+      buttonId: buttonId,
+      panelId: panelId,
+      panel: panel,
+      button: button,
+      togglePopover: function togglePopover() {
+        var _match;
+
+        popoverState.value = (0,_utils_match_esm_js__WEBPACK_IMPORTED_MODULE_2__.match)(popoverState.value, (_match = {}, _match[PopoverStates.Open] = PopoverStates.Closed, _match[PopoverStates.Closed] = PopoverStates.Open, _match));
+      },
+      closePopover: function closePopover() {
+        if (popoverState.value === PopoverStates.Closed) return;
+        popoverState.value = PopoverStates.Closed;
+      },
+      close: function close(focusableElement) {
+        api.closePopover();
+
+        var restoreElement = function () {
+          if (!focusableElement) return (0,_utils_dom_esm_js__WEBPACK_IMPORTED_MODULE_3__.dom)(api.button);
+          if (focusableElement instanceof HTMLElement) return focusableElement;
+          if (focusableElement.value instanceof HTMLElement) return (0,_utils_dom_esm_js__WEBPACK_IMPORTED_MODULE_3__.dom)(focusableElement);
+          return (0,_utils_dom_esm_js__WEBPACK_IMPORTED_MODULE_3__.dom)(api.button);
+        }();
+
+        restoreElement == null ? void 0 : restoreElement.focus();
+      }
+    };
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.provide)(PopoverContext, api);
+    (0,_internal_open_closed_esm_js__WEBPACK_IMPORTED_MODULE_4__.useOpenClosedProvider)((0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
+      var _match2;
+
+      return (0,_utils_match_esm_js__WEBPACK_IMPORTED_MODULE_2__.match)(popoverState.value, (_match2 = {}, _match2[PopoverStates.Open] = _internal_open_closed_esm_js__WEBPACK_IMPORTED_MODULE_4__.State.Open, _match2[PopoverStates.Closed] = _internal_open_closed_esm_js__WEBPACK_IMPORTED_MODULE_4__.State.Closed, _match2));
+    }));
+    var registerBag = {
+      buttonId: buttonId,
+      panelId: panelId,
+      close: function close() {
+        api.closePopover();
+      }
+    };
+    var groupContext = usePopoverGroupContext();
+    var registerPopover = groupContext == null ? void 0 : groupContext.registerPopover;
+
+    function isFocusWithinPopoverGroup() {
+      var _groupContext$isFocus, _dom, _dom2;
+
+      return (_groupContext$isFocus = groupContext == null ? void 0 : groupContext.isFocusWithinPopoverGroup()) != null ? _groupContext$isFocus : ((_dom = (0,_utils_dom_esm_js__WEBPACK_IMPORTED_MODULE_3__.dom)(button)) == null ? void 0 : _dom.contains(document.activeElement)) || ((_dom2 = (0,_utils_dom_esm_js__WEBPACK_IMPORTED_MODULE_3__.dom)(panel)) == null ? void 0 : _dom2.contains(document.activeElement));
+    }
+
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.watchEffect)(function () {
+      return registerPopover == null ? void 0 : registerPopover(registerBag);
+    }); // Handle focus out
+
+    (0,_hooks_use_window_event_esm_js__WEBPACK_IMPORTED_MODULE_5__.useWindowEvent)('focus', function () {
+      if (popoverState.value !== PopoverStates.Open) return;
+      if (isFocusWithinPopoverGroup()) return;
+      if (!button) return;
+      if (!panel) return;
+      api.closePopover();
+    }, true); // Handle outside click
+
+    (0,_hooks_use_window_event_esm_js__WEBPACK_IMPORTED_MODULE_5__.useWindowEvent)('mousedown', function (event) {
+      var _dom3, _dom4;
+
+      var target = event.target;
+      if (popoverState.value !== PopoverStates.Open) return;
+      if ((_dom3 = (0,_utils_dom_esm_js__WEBPACK_IMPORTED_MODULE_3__.dom)(button)) == null ? void 0 : _dom3.contains(target)) return;
+      if ((_dom4 = (0,_utils_dom_esm_js__WEBPACK_IMPORTED_MODULE_3__.dom)(panel)) == null ? void 0 : _dom4.contains(target)) return;
+      api.closePopover();
+
+      if (!(0,_utils_focus_management_esm_js__WEBPACK_IMPORTED_MODULE_6__.isFocusableElement)(target, _utils_focus_management_esm_js__WEBPACK_IMPORTED_MODULE_6__.FocusableMode.Loose)) {
+        var _dom5;
+
+        event.preventDefault();
+        (_dom5 = (0,_utils_dom_esm_js__WEBPACK_IMPORTED_MODULE_3__.dom)(button)) == null ? void 0 : _dom5.focus();
+      }
+    });
+    return function () {
+      var slot = {
+        open: popoverState.value === PopoverStates.Open,
+        close: api.close
+      };
+      return (0,_utils_render_esm_js__WEBPACK_IMPORTED_MODULE_7__.render)({
+        props: props,
+        slot: slot,
+        slots: slots,
+        attrs: attrs,
+        name: 'Popover'
+      });
+    };
+  }
+}); // ---
+
+var PopoverButton = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.defineComponent)({
+  name: 'PopoverButton',
+  props: {
+    as: {
+      type: [Object, String],
+      "default": 'button'
+    },
+    disabled: {
+      type: [Boolean],
+      "default": false
+    }
+  },
+  render: function render$1() {
+    var api = usePopoverContext('PopoverButton');
+    var slot = {
+      open: api.popoverState.value === PopoverStates.Open
+    };
+    var propsWeControl = this.isWithinPanel ? {
+      ref: 'el',
+      type: this.type,
+      onKeydown: this.handleKeyDown,
+      onClick: this.handleClick
+    } : {
+      ref: 'el',
+      id: api.buttonId,
+      type: this.type,
+      'aria-expanded': this.$props.disabled ? undefined : api.popoverState.value === PopoverStates.Open,
+      'aria-controls': (0,_utils_dom_esm_js__WEBPACK_IMPORTED_MODULE_3__.dom)(api.panel) ? api.panelId : undefined,
+      disabled: this.$props.disabled ? true : undefined,
+      onKeydown: this.handleKeyDown,
+      onKeyup: this.handleKeyUp,
+      onClick: this.handleClick
+    };
+    return (0,_utils_render_esm_js__WEBPACK_IMPORTED_MODULE_7__.render)({
+      props: (0,_virtual_rollupPluginBabelHelpers_js__WEBPACK_IMPORTED_MODULE_8__["extends"])({}, this.$props, propsWeControl),
+      slot: slot,
+      attrs: this.$attrs,
+      slots: this.$slots,
+      name: 'PopoverButton'
+    });
+  },
+  setup: function setup(props, _ref2) {
+    var attrs = _ref2.attrs;
+    var api = usePopoverContext('PopoverButton');
+    var groupContext = usePopoverGroupContext();
+    var closeOthers = groupContext == null ? void 0 : groupContext.closeOthers;
+    var panelContext = usePopoverPanelContext();
+    var isWithinPanel = panelContext === null ? false : panelContext === api.panelId; // TODO: Revisit when handling Tab/Shift+Tab when using Portal's
+
+    var activeElementRef = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(null);
+    var previousActiveElementRef = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(typeof window === 'undefined' ? null : document.activeElement);
+    (0,_hooks_use_window_event_esm_js__WEBPACK_IMPORTED_MODULE_5__.useWindowEvent)('focus', function () {
+      previousActiveElementRef.value = activeElementRef.value;
+      activeElementRef.value = document.activeElement;
+    }, true);
+    var elementRef = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(null);
+
+    if (!isWithinPanel) {
+      (0,vue__WEBPACK_IMPORTED_MODULE_0__.watchEffect)(function () {
+        api.button.value = elementRef.value;
+      });
+    }
+
+    return {
+      isWithinPanel: isWithinPanel,
+      el: elementRef,
+      type: (0,_hooks_use_resolve_button_type_esm_js__WEBPACK_IMPORTED_MODULE_9__.useResolveButtonType)((0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
+        return {
+          as: props.as,
+          type: attrs.type
+        };
+      }), elementRef),
+      handleKeyDown: function handleKeyDown(event) {
+        var _dom6, _dom7;
+
+        if (isWithinPanel) {
+          if (api.popoverState.value === PopoverStates.Closed) return;
+
+          switch (event.key) {
+            case _keyboard_esm_js__WEBPACK_IMPORTED_MODULE_10__.Keys.Space:
+            case _keyboard_esm_js__WEBPACK_IMPORTED_MODULE_10__.Keys.Enter:
+              event.preventDefault(); // Prevent triggering a *click* event
+
+              event.stopPropagation();
+              api.closePopover();
+              (_dom6 = (0,_utils_dom_esm_js__WEBPACK_IMPORTED_MODULE_3__.dom)(api.button)) == null ? void 0 : _dom6.focus(); // Re-focus the original opening Button
+
+              break;
+          }
+        } else {
+          switch (event.key) {
+            case _keyboard_esm_js__WEBPACK_IMPORTED_MODULE_10__.Keys.Space:
+            case _keyboard_esm_js__WEBPACK_IMPORTED_MODULE_10__.Keys.Enter:
+              event.preventDefault(); // Prevent triggering a *click* event
+
+              event.stopPropagation();
+              if (api.popoverState.value === PopoverStates.Closed) closeOthers == null ? void 0 : closeOthers(api.buttonId);
+              api.togglePopover();
+              break;
+
+            case _keyboard_esm_js__WEBPACK_IMPORTED_MODULE_10__.Keys.Escape:
+              if (api.popoverState.value !== PopoverStates.Open) return closeOthers == null ? void 0 : closeOthers(api.buttonId);
+              if (!(0,_utils_dom_esm_js__WEBPACK_IMPORTED_MODULE_3__.dom)(api.button)) return;
+              if (!((_dom7 = (0,_utils_dom_esm_js__WEBPACK_IMPORTED_MODULE_3__.dom)(api.button)) == null ? void 0 : _dom7.contains(document.activeElement))) return;
+              event.preventDefault();
+              event.stopPropagation();
+              api.closePopover();
+              break;
+
+            case _keyboard_esm_js__WEBPACK_IMPORTED_MODULE_10__.Keys.Tab:
+              if (api.popoverState.value !== PopoverStates.Open) return;
+              if (!api.panel) return;
+              if (!api.button) return; // TODO: Revisit when handling Tab/Shift+Tab when using Portal's
+
+              if (event.shiftKey) {
+                var _dom8, _dom9;
+
+                // Check if the last focused element exists, and check that it is not inside button or panel itself
+                if (!previousActiveElementRef.value) return;
+                if ((_dom8 = (0,_utils_dom_esm_js__WEBPACK_IMPORTED_MODULE_3__.dom)(api.button)) == null ? void 0 : _dom8.contains(previousActiveElementRef.value)) return;
+                if ((_dom9 = (0,_utils_dom_esm_js__WEBPACK_IMPORTED_MODULE_3__.dom)(api.panel)) == null ? void 0 : _dom9.contains(previousActiveElementRef.value)) return; // Check if the last focused element is *after* the button in the DOM
+
+                var focusableElements = (0,_utils_focus_management_esm_js__WEBPACK_IMPORTED_MODULE_6__.getFocusableElements)();
+                var previousIdx = focusableElements.indexOf(previousActiveElementRef.value);
+                var buttonIdx = focusableElements.indexOf((0,_utils_dom_esm_js__WEBPACK_IMPORTED_MODULE_3__.dom)(api.button));
+                if (buttonIdx > previousIdx) return;
+                event.preventDefault();
+                event.stopPropagation();
+                (0,_utils_focus_management_esm_js__WEBPACK_IMPORTED_MODULE_6__.focusIn)((0,_utils_dom_esm_js__WEBPACK_IMPORTED_MODULE_3__.dom)(api.panel), _utils_focus_management_esm_js__WEBPACK_IMPORTED_MODULE_6__.Focus.Last);
+              } else {
+                event.preventDefault();
+                event.stopPropagation();
+                (0,_utils_focus_management_esm_js__WEBPACK_IMPORTED_MODULE_6__.focusIn)((0,_utils_dom_esm_js__WEBPACK_IMPORTED_MODULE_3__.dom)(api.panel), _utils_focus_management_esm_js__WEBPACK_IMPORTED_MODULE_6__.Focus.First);
+              }
+
+              break;
+          }
+        }
+      },
+      handleKeyUp: function handleKeyUp(event) {
+        var _dom10, _dom11;
+
+        if (isWithinPanel) return;
+
+        if (event.key === _keyboard_esm_js__WEBPACK_IMPORTED_MODULE_10__.Keys.Space) {
+          // Required for firefox, event.preventDefault() in handleKeyDown for
+          // the Space key doesn't cancel the handleKeyUp, which in turn
+          // triggers a *click*.
+          event.preventDefault();
+        }
+
+        if (api.popoverState.value !== PopoverStates.Open) return;
+        if (!api.panel) return;
+        if (!api.button) return; // TODO: Revisit when handling Tab/Shift+Tab when using Portal's
+
+        switch (event.key) {
+          case _keyboard_esm_js__WEBPACK_IMPORTED_MODULE_10__.Keys.Tab:
+            // Check if the last focused element exists, and check that it is not inside button or panel itself
+            if (!previousActiveElementRef.value) return;
+            if ((_dom10 = (0,_utils_dom_esm_js__WEBPACK_IMPORTED_MODULE_3__.dom)(api.button)) == null ? void 0 : _dom10.contains(previousActiveElementRef.value)) return;
+            if ((_dom11 = (0,_utils_dom_esm_js__WEBPACK_IMPORTED_MODULE_3__.dom)(api.panel)) == null ? void 0 : _dom11.contains(previousActiveElementRef.value)) return; // Check if the last focused element is *after* the button in the DOM
+
+            var focusableElements = (0,_utils_focus_management_esm_js__WEBPACK_IMPORTED_MODULE_6__.getFocusableElements)();
+            var previousIdx = focusableElements.indexOf(previousActiveElementRef.value);
+            var buttonIdx = focusableElements.indexOf((0,_utils_dom_esm_js__WEBPACK_IMPORTED_MODULE_3__.dom)(api.button));
+            if (buttonIdx > previousIdx) return;
+            event.preventDefault();
+            event.stopPropagation();
+            (0,_utils_focus_management_esm_js__WEBPACK_IMPORTED_MODULE_6__.focusIn)((0,_utils_dom_esm_js__WEBPACK_IMPORTED_MODULE_3__.dom)(api.panel), _utils_focus_management_esm_js__WEBPACK_IMPORTED_MODULE_6__.Focus.Last);
+            break;
+        }
+      },
+      handleClick: function handleClick() {
+        if (props.disabled) return;
+
+        if (isWithinPanel) {
+          var _dom12;
+
+          api.closePopover();
+          (_dom12 = (0,_utils_dom_esm_js__WEBPACK_IMPORTED_MODULE_3__.dom)(api.button)) == null ? void 0 : _dom12.focus(); // Re-focus the original opening Button
+        } else {
+          var _dom13;
+
+          if (api.popoverState.value === PopoverStates.Closed) closeOthers == null ? void 0 : closeOthers(api.buttonId);
+          (_dom13 = (0,_utils_dom_esm_js__WEBPACK_IMPORTED_MODULE_3__.dom)(api.button)) == null ? void 0 : _dom13.focus();
+          api.togglePopover();
+        }
+      }
+    };
+  }
+}); // ---
+
+var PopoverOverlay = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.defineComponent)({
+  name: 'PopoverOverlay',
+  props: {
+    as: {
+      type: [Object, String],
+      "default": 'div'
+    },
+    "static": {
+      type: Boolean,
+      "default": false
+    },
+    unmount: {
+      type: Boolean,
+      "default": true
+    }
+  },
+  render: function render$1() {
+    var api = usePopoverContext('PopoverOverlay');
+    var slot = {
+      open: api.popoverState.value === PopoverStates.Open
+    };
+    var propsWeControl = {
+      id: this.id,
+      ref: 'el',
+      'aria-hidden': true,
+      onClick: this.handleClick
+    };
+    return (0,_utils_render_esm_js__WEBPACK_IMPORTED_MODULE_7__.render)({
+      props: (0,_virtual_rollupPluginBabelHelpers_js__WEBPACK_IMPORTED_MODULE_8__["extends"])({}, this.$props, propsWeControl),
+      slot: slot,
+      attrs: this.$attrs,
+      slots: this.$slots,
+      features: _utils_render_esm_js__WEBPACK_IMPORTED_MODULE_7__.Features.RenderStrategy | _utils_render_esm_js__WEBPACK_IMPORTED_MODULE_7__.Features.Static,
+      visible: this.visible,
+      name: 'PopoverOverlay'
+    });
+  },
+  setup: function setup() {
+    var api = usePopoverContext('PopoverOverlay');
+    var usesOpenClosedState = (0,_internal_open_closed_esm_js__WEBPACK_IMPORTED_MODULE_4__.useOpenClosed)();
+    var visible = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
+      if (usesOpenClosedState !== null) {
+        return usesOpenClosedState.value === _internal_open_closed_esm_js__WEBPACK_IMPORTED_MODULE_4__.State.Open;
+      }
+
+      return api.popoverState.value === PopoverStates.Open;
+    });
+    return {
+      id: "headlessui-popover-overlay-" + (0,_hooks_use_id_esm_js__WEBPACK_IMPORTED_MODULE_1__.useId)(),
+      handleClick: function handleClick() {
+        api.closePopover();
+      },
+      visible: visible
+    };
+  }
+}); // ---
+
+var PopoverPanel = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.defineComponent)({
+  name: 'PopoverPanel',
+  props: {
+    as: {
+      type: [Object, String],
+      "default": 'div'
+    },
+    "static": {
+      type: Boolean,
+      "default": false
+    },
+    unmount: {
+      type: Boolean,
+      "default": true
+    },
+    focus: {
+      type: Boolean,
+      "default": false
+    }
+  },
+  render: function render$1() {
+    var api = usePopoverContext('PopoverPanel');
+    var slot = {
+      open: api.popoverState.value === PopoverStates.Open,
+      close: api.close
+    };
+    var propsWeControl = {
+      ref: 'el',
+      id: this.id,
+      onKeydown: this.handleKeyDown
+    };
+    return (0,_utils_render_esm_js__WEBPACK_IMPORTED_MODULE_7__.render)({
+      props: (0,_virtual_rollupPluginBabelHelpers_js__WEBPACK_IMPORTED_MODULE_8__["extends"])({}, this.$props, propsWeControl),
+      slot: slot,
+      attrs: this.$attrs,
+      slots: this.$slots,
+      features: _utils_render_esm_js__WEBPACK_IMPORTED_MODULE_7__.Features.RenderStrategy | _utils_render_esm_js__WEBPACK_IMPORTED_MODULE_7__.Features.Static,
+      visible: this.visible,
+      name: 'PopoverPanel'
+    });
+  },
+  setup: function setup(props) {
+    var focus = props.focus;
+    var api = usePopoverContext('PopoverPanel');
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.provide)(PopoverPanelContext, api.panelId);
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.onUnmounted)(function () {
+      api.panel.value = null;
+    }); // Move focus within panel
+
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.watchEffect)(function () {
+      var _dom14;
+
+      if (!focus) return;
+      if (api.popoverState.value !== PopoverStates.Open) return;
+      if (!api.panel) return;
+      var activeElement = document.activeElement;
+      if ((_dom14 = (0,_utils_dom_esm_js__WEBPACK_IMPORTED_MODULE_3__.dom)(api.panel)) == null ? void 0 : _dom14.contains(activeElement)) return; // Already focused within Dialog
+
+      (0,_utils_focus_management_esm_js__WEBPACK_IMPORTED_MODULE_6__.focusIn)((0,_utils_dom_esm_js__WEBPACK_IMPORTED_MODULE_3__.dom)(api.panel), _utils_focus_management_esm_js__WEBPACK_IMPORTED_MODULE_6__.Focus.First);
+    }); // Handle Tab / Shift+Tab focus positioning
+
+    (0,_hooks_use_window_event_esm_js__WEBPACK_IMPORTED_MODULE_5__.useWindowEvent)('keydown', function (event) {
+      var _dom15;
+
+      if (api.popoverState.value !== PopoverStates.Open) return;
+      if (!(0,_utils_dom_esm_js__WEBPACK_IMPORTED_MODULE_3__.dom)(api.panel)) return;
+      if (event.key !== _keyboard_esm_js__WEBPACK_IMPORTED_MODULE_10__.Keys.Tab) return;
+      if (!document.activeElement) return;
+      if (!((_dom15 = (0,_utils_dom_esm_js__WEBPACK_IMPORTED_MODULE_3__.dom)(api.panel)) == null ? void 0 : _dom15.contains(document.activeElement))) return; // We will take-over the default tab behaviour so that we have a bit
+      // control over what is focused next. It will behave exactly the same,
+      // but it will also "fix" some issues based on whether you are using a
+      // Portal or not.
+
+      event.preventDefault();
+      var result = (0,_utils_focus_management_esm_js__WEBPACK_IMPORTED_MODULE_6__.focusIn)((0,_utils_dom_esm_js__WEBPACK_IMPORTED_MODULE_3__.dom)(api.panel), event.shiftKey ? _utils_focus_management_esm_js__WEBPACK_IMPORTED_MODULE_6__.Focus.Previous : _utils_focus_management_esm_js__WEBPACK_IMPORTED_MODULE_6__.Focus.Next);
+
+      if (result === _utils_focus_management_esm_js__WEBPACK_IMPORTED_MODULE_6__.FocusResult.Underflow) {
+        var _dom16;
+
+        return (_dom16 = (0,_utils_dom_esm_js__WEBPACK_IMPORTED_MODULE_3__.dom)(api.button)) == null ? void 0 : _dom16.focus();
+      } else if (result === _utils_focus_management_esm_js__WEBPACK_IMPORTED_MODULE_6__.FocusResult.Overflow) {
+        if (!(0,_utils_dom_esm_js__WEBPACK_IMPORTED_MODULE_3__.dom)(api.button)) return;
+        var elements = (0,_utils_focus_management_esm_js__WEBPACK_IMPORTED_MODULE_6__.getFocusableElements)();
+        var buttonIdx = elements.indexOf((0,_utils_dom_esm_js__WEBPACK_IMPORTED_MODULE_3__.dom)(api.button));
+        var nextElements = elements.splice(buttonIdx + 1) // Elements after button
+        .filter(function (element) {
+          var _dom17;
+
+          return !((_dom17 = (0,_utils_dom_esm_js__WEBPACK_IMPORTED_MODULE_3__.dom)(api.panel)) == null ? void 0 : _dom17.contains(element));
+        }); // Ignore items in panel
+        // Try to focus the next element, however it could fail if we are in a
+        // Portal that happens to be the very last one in the DOM. In that
+        // case we would Error (because nothing after the button is
+        // focusable). Therefore we will try and focus the very first item in
+        // the document.body.
+
+        if ((0,_utils_focus_management_esm_js__WEBPACK_IMPORTED_MODULE_6__.focusIn)(nextElements, _utils_focus_management_esm_js__WEBPACK_IMPORTED_MODULE_6__.Focus.First) === _utils_focus_management_esm_js__WEBPACK_IMPORTED_MODULE_6__.FocusResult.Error) {
+          (0,_utils_focus_management_esm_js__WEBPACK_IMPORTED_MODULE_6__.focusIn)(document.body, _utils_focus_management_esm_js__WEBPACK_IMPORTED_MODULE_6__.Focus.First);
+        }
+      }
+    }); // Handle focus out when we are in special "focus" mode
+
+    (0,_hooks_use_window_event_esm_js__WEBPACK_IMPORTED_MODULE_5__.useWindowEvent)('focus', function () {
+      var _dom18;
+
+      if (!focus) return;
+      if (api.popoverState.value !== PopoverStates.Open) return;
+      if (!(0,_utils_dom_esm_js__WEBPACK_IMPORTED_MODULE_3__.dom)(api.panel)) return;
+      if ((_dom18 = (0,_utils_dom_esm_js__WEBPACK_IMPORTED_MODULE_3__.dom)(api.panel)) == null ? void 0 : _dom18.contains(document.activeElement)) return;
+      api.closePopover();
+    }, true);
+    var usesOpenClosedState = (0,_internal_open_closed_esm_js__WEBPACK_IMPORTED_MODULE_4__.useOpenClosed)();
+    var visible = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
+      if (usesOpenClosedState !== null) {
+        return usesOpenClosedState.value === _internal_open_closed_esm_js__WEBPACK_IMPORTED_MODULE_4__.State.Open;
+      }
+
+      return api.popoverState.value === PopoverStates.Open;
+    });
+    return {
+      id: api.panelId,
+      el: api.panel,
+      handleKeyDown: function handleKeyDown(event) {
+        var _dom19, _dom20;
+
+        switch (event.key) {
+          case _keyboard_esm_js__WEBPACK_IMPORTED_MODULE_10__.Keys.Escape:
+            if (api.popoverState.value !== PopoverStates.Open) return;
+            if (!(0,_utils_dom_esm_js__WEBPACK_IMPORTED_MODULE_3__.dom)(api.panel)) return;
+            if (!((_dom19 = (0,_utils_dom_esm_js__WEBPACK_IMPORTED_MODULE_3__.dom)(api.panel)) == null ? void 0 : _dom19.contains(document.activeElement))) return;
+            event.preventDefault();
+            event.stopPropagation();
+            api.closePopover();
+            (_dom20 = (0,_utils_dom_esm_js__WEBPACK_IMPORTED_MODULE_3__.dom)(api.button)) == null ? void 0 : _dom20.focus();
+            break;
+        }
+      },
+      visible: visible
+    };
+  }
+}); // ---
+
+var PopoverGroup = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.defineComponent)({
+  name: 'PopoverGroup',
+  props: {
+    as: {
+      type: [Object, String],
+      "default": 'div'
+    }
+  },
+  render: function render$1() {
+    var propsWeControl = {
+      ref: 'el'
+    };
+    return (0,_utils_render_esm_js__WEBPACK_IMPORTED_MODULE_7__.render)({
+      props: (0,_virtual_rollupPluginBabelHelpers_js__WEBPACK_IMPORTED_MODULE_8__["extends"])({}, this.$props, propsWeControl),
+      slot: {},
+      attrs: this.$attrs,
+      slots: this.$slots,
+      name: 'PopoverGroup'
+    });
+  },
+  setup: function setup() {
+    var groupRef = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(null);
+    var popovers = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
+
+    function unregisterPopover(registerBag) {
+      var idx = popovers.value.indexOf(registerBag);
+      if (idx !== -1) popovers.value.splice(idx, 1);
+    }
+
+    function registerPopover(registerBag) {
+      popovers.value.push(registerBag);
+      return function () {
+        unregisterPopover(registerBag);
+      };
+    }
+
+    function isFocusWithinPopoverGroup() {
+      var _dom21;
+
+      var element = document.activeElement;
+      if ((_dom21 = (0,_utils_dom_esm_js__WEBPACK_IMPORTED_MODULE_3__.dom)(groupRef)) == null ? void 0 : _dom21.contains(element)) return true; // Check if the focus is in one of the button or panel elements. This is important in case you are rendering inside a Portal.
+
+      return popovers.value.some(function (bag) {
+        var _document$getElementB, _document$getElementB2;
+
+        return ((_document$getElementB = document.getElementById(bag.buttonId)) == null ? void 0 : _document$getElementB.contains(element)) || ((_document$getElementB2 = document.getElementById(bag.panelId)) == null ? void 0 : _document$getElementB2.contains(element));
+      });
+    }
+
+    function closeOthers(buttonId) {
+      for (var _iterator = (0,_virtual_rollupPluginBabelHelpers_js__WEBPACK_IMPORTED_MODULE_8__.createForOfIteratorHelperLoose)(popovers.value), _step; !(_step = _iterator()).done;) {
+        var popover = _step.value;
+        if (popover.buttonId !== buttonId) popover.close();
+      }
+    }
+
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.provide)(PopoverGroupContext, {
+      registerPopover: registerPopover,
+      unregisterPopover: unregisterPopover,
+      isFocusWithinPopoverGroup: isFocusWithinPopoverGroup,
+      closeOthers: closeOthers
+    });
+    return {
+      el: groupRef
+    };
+  }
+});
+
+
+//# sourceMappingURL=popover.esm.js.map
 
 
 /***/ }),

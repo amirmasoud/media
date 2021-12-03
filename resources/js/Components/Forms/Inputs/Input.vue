@@ -10,21 +10,29 @@
       :type="type"
       :name="name"
       class="shadow-sm block w-full sm:text-sm rounded-md"
-      :class="[form.errors[name] ? 'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500' : 'focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 ']"
+      :class="[hasError || !!form.errors[name] ? 'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500' : 'focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 ']"
       :placeholder="placeholder"
       @input="$emit('update:modelValue', $event.target.value)"
     >
   </div>
-  <p
-    v-if="form.errors[name]"
-    id="email-error"
+  <TransitionRoot
+    :id="`${name}-error`"
+    :show="hasError || !!form.errors[name]"
+    enter="transition-opacity duration-300"
+    enter-from="opacity-0"
+    enter-to="opacity-100"
+    leave="transition-opacity duration-300"
+    leave-from="opacity-100"
+    leave-to="opacity-0"
+    as="p"
     class="mt-2 text-sm text-red-600"
   >
-    {{ form.errors[name] }}
-  </p>
+    {{ hasError ? errorMessage : form.errors[name] }}
+  </TransitionRoot>
 </template>
 
 <script setup>
+import { TransitionRoot } from '@headlessui/vue';
 defineEmits(['update:modelValue']);
 
 defineProps({
@@ -48,6 +56,14 @@ defineProps({
     default() {
       return { errors: {} };
     }
+  },
+  hasError: {
+    type: Boolean,
+    default: null,
+  },
+  errorMessage: {
+    type: String,
+    default: '',
   }
 });
 </script>
