@@ -13,6 +13,9 @@ use Inertia\Inertia;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', function () {
+    abort(500);
+});
 
 Route::get('login', function () {
     return Inertia::render('Auth/Login', [

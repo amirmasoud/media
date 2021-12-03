@@ -743,6 +743,14 @@ var map = {
 		"./resources/js/Pages/Dashboard/Users/Index.vue",
 		"/js/vendor",
 		"resources_js_Pages_Dashboard_Users_Index_vue"
+	],
+	"./Error": [
+		"./resources/js/Pages/Error.vue",
+		"resources_js_Pages_Error_vue"
+	],
+	"./Error.vue": [
+		"./resources/js/Pages/Error.vue",
+		"resources_js_Pages_Error_vue"
 	]
 };
 function webpackAsyncContext(req) {
