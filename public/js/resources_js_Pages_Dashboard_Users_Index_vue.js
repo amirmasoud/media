@@ -143,7 +143,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     var expose = _ref.expose;
     expose();
     var props = __props;
-    (0,vue__WEBPACK_IMPORTED_MODULE_0__.watch)((0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(props.filters.search), lodash_debounce__WEBPACK_IMPORTED_MODULE_3___default()(function (value) {
+    var search = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(props.filters.search);
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.watch)(search, lodash_debounce__WEBPACK_IMPORTED_MODULE_3___default()(function (value) {
       _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.get(props.endpoint, _objectSpread({}, value !== '' && {
         search: value
       }), {
@@ -153,6 +154,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }, 300));
     var __returned__ = {
       props: props,
+      search: search,
       ref: vue__WEBPACK_IMPORTED_MODULE_0__.ref,
       watch: vue__WEBPACK_IMPORTED_MODULE_0__.watch,
       Inertia: _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia,
@@ -486,9 +488,9 @@ var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNo
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Input"], {
-    modelValue: $props.filters.search,
+    modelValue: $setup.search,
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
-      return $props.filters.search = $event;
+      return $setup.search = $event;
     }),
     name: "search",
     label: "Search",

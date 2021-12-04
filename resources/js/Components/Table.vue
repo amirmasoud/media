@@ -5,7 +5,7 @@
         Users
       </h2>
       <Input
-        v-model="filters.search"
+        v-model="search"
         name="search"
         label="Search"
         type="search"
@@ -118,7 +118,9 @@ let props = defineProps({
   endpoint: String,
 });
 
-watch(ref(props.filters.search), debounce(function (value) {
+let search = ref(props.filters.search);
+
+watch(search, debounce(function (value) {
   Inertia.get(props.endpoint, { ...(value !== '' && { search : value }) }, { preserveState: true, replace: true });
 }, 300));
 </script>
