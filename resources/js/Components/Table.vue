@@ -9,31 +9,20 @@
         name="search"
         label="Search"
         type="search"
-        placeholder="Search users"
+        placeholder="Search records"
       />
     </div>
   </div>
-
   <table class="min-w-full divide-y divide-gray-200">
     <thead class="bg-gray-50">
       <tr>
         <th
+          v-for="(field, name) in fields"
+          :key="name"
           scope="col"
           class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
         >
-          Name
-        </th>
-        <th
-          scope="col"
-          class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-        >
-          Email
-        </th>
-        <th
-          scope="col"
-          class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-        >
-          Email Verified At
+          {{ field.label }}
         </th>
         <th
           scope="col"
@@ -45,17 +34,17 @@
     </thead>
     <tbody class="bg-white divide-y divide-gray-200">
       <tr
-        v-for="user in records.data"
-        :key="user.id"
+        v-for="record in records.data"
+        :key="record.id"
       >
         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-          {{ user.name }}
+          {{ record.name }}
         </td>
         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-          {{ user.email }}
+          {{ record.email }}
         </td>
         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-          {{ user.email_verified_at }}
+          {{ record.email_verified_at }}
         </td>
         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
           <a
@@ -116,6 +105,7 @@ let props = defineProps({
     }
   },
   endpoint: String,
+  fields: Object,
 });
 
 let search = ref(props.filters.search);

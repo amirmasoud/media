@@ -7,6 +7,17 @@
     :records="users"
     :filters="filters"
     endpoint="/dashboard/users"
+    :fields="{
+      name: {
+        label: 'Name',
+      },
+      email: {
+        label: 'Email',
+      },
+      email_verified_at: {
+        label: 'Email Verified At',
+      },
+    }"
   />
 </template>
 
