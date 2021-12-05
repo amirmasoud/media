@@ -4,12 +4,13 @@
       <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">
         Users
       </h2>
+    </div>
+    <div class="flex-1 min-w-0">
       <Input
         v-model="search"
         name="search"
-        label="Search"
         type="search"
-        placeholder="Search records"
+        placeholder="Search users"
       />
     </div>
   </div>
@@ -28,7 +29,7 @@
           scope="col"
           class="relative px-6 py-3"
         >
-          <span class="sr-only">Edit</span>
+          <span class="sr-only">Actions</span>
         </th>
       </tr>
     </thead>
@@ -46,11 +47,15 @@
         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
           {{ record.email_verified_at }}
         </td>
-        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-          <a
-            href="#"
+        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-6">
+          <Link
+            v-for="(action, name) in actions"
+            :key="name"
+            :href="action.link || '#'"
             class="text-indigo-600 hover:text-indigo-900"
-          >Edit</a>
+          >
+            {{ action.label }}
+          </Link>
         </td>
       </tr>
     </tbody>
@@ -106,6 +111,7 @@ let props = defineProps({
   },
   endpoint: String,
   fields: Object,
+  actions: Object,
 });
 
 let search = ref(props.filters.search);

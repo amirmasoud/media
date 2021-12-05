@@ -18,6 +18,14 @@
         label: 'Email Verified At',
       },
     }"
+    :actions="{
+      edit: {
+        label: 'Edit',
+      },
+      delete: {
+        label: 'Delete',
+      }
+    }"
   />
 </template>
 
