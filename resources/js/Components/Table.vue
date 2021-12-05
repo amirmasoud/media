@@ -1,19 +1,4 @@
 <template>
-  <div class="md:flex md:items-center md:justify-between mb-6">
-    <div class="flex-1 min-w-0">
-      <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">
-        Users
-      </h2>
-    </div>
-    <div class="flex-1 min-w-0">
-      <Input
-        v-model="search"
-        name="search"
-        type="search"
-        placeholder="Search users"
-      />
-    </div>
-  </div>
   <table class="min-w-full divide-y divide-gray-200">
     <thead class="bg-gray-50">
       <tr>
@@ -38,20 +23,18 @@
         v-for="record in records.data"
         :key="record.id"
       >
-        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-          {{ record.name }}
-        </td>
-        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-          {{ record.email }}
-        </td>
-        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-          {{ record.email_verified_at }}
+        <td
+          v-for="(field, name) in fields"
+          :key="name"
+          class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+        >
+          {{ record[name] }}
         </td>
         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-6">
           <Link
             v-for="(action, name) in actions"
             :key="name"
-            :href="action.link || '#'"
+            :href="action.link"
             class="text-indigo-600 hover:text-indigo-900"
           >
             {{ action.label }}
@@ -99,7 +82,6 @@ import { ref, watch } from 'vue';
 import { Inertia } from '@inertiajs/inertia';
 import Paginator from '@/Components/Paginator';
 import debounce from "lodash/debounce";
-import Input from "@/Components/Forms/Inputs/Input";
 
 let props = defineProps({
   records: Object,
