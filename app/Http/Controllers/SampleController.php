@@ -34,7 +34,7 @@ class SampleController extends BasicCrudController
         // TODO: Implement update() method.
     }
 
-    public function delete(User|Model $model, Request $request)
+    public function delete(Model $model, Request $request)
     {
         // TODO: Implement delete() method.
     }
