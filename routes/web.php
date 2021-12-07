@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\OauthController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -17,65 +18,10 @@ Route::get('/', function () {
     abort(503);
 });
 
-Route::get('login', function () {
-    return Inertia::render('Auth/Login', [
-        'github' => \Laravel\Socialite\Facades\Socialite::driver('github')->redirect()->getTargetUrl(),
-        'google' => \Laravel\Socialite\Facades\Socialite::driver('google')->redirect()->getTargetUrl(),
-    ]);
-});
-
-Route::get('auth/github/callback', function () {
-    $githubUser = Socialite::driver('github')->user();
-
-    $user = \App\Models\User::where('provider', \App\Enums\ProviderEnum::GITHUB->value)->where('provider_id', $githubUser->id)->first();
-
-
-    if ($user) {
-        $user->update([
-            'provider_token' => $githubUser->token,
-            'provider_refresh_token' => $githubUser->refreshToken,
-        ]);
-    } else {
-        $user = \App\Models\User::create([
-            'name' => $githubUser->name,
-            'email' => $githubUser->email,
-            'provider_id' => $githubUser->id,
-            'provider_token' => $githubUser->token,
-            'provider_refresh_token' => $githubUser->refreshToken,
-        ]);
-    }
-
-    Auth::login($user);
-
-    return redirect('/dashboard');
-});
-
-Route::get('auth/google/callback', function () {
-    $googleUser = Socialite::driver('google')->user();
-
-    $user = \App\Models\User::where('provider', \App\Enums\ProviderEnum::GOOGLE->value)->where('provider_id', $googleUser->id)->first();
-
-
-    if ($user) {
-        $user->update([
-            'provider_token' => $googleUser->token,
-            'provider_refresh_token' => $googleUser->refreshToken,
-        ]);
-    } else {
-        $user = \App\Models\User::create([
-            'name' => $googleUser->name,
-            'email' => $googleUser->email,
-            'provider' => \App\Enums\ProviderEnum::GOOGLE->value,
-            'provider_id' => $googleUser->id,
-            'provider_token' => $googleUser->token,
-            'provider_refresh_token' => $googleUser->refreshToken,
-        ]);
-    }
-
-    Auth::login($user);
-
-    return redirect('/dashboard');
-});
+Route::get('login', [OauthController::class, 'links']);
+// Route::get('auth/github/callback', [OauthController::class, 'githubCallback']);
+// Route::get('auth/github/callback', [OauthController::class, 'googleCallback']);
+Route::get('auth/{provider}/callback', [OauthController::class, 'callback']);
 
 Route::prefix('dashboard')->group(function () {
     Route::get('/', function () {
