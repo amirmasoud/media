@@ -14,13 +14,8 @@ use Inertia\Inertia;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function () {
-    abort(503);
-});
 
 Route::get('login', [OauthController::class, 'links']);
-// Route::get('auth/github/callback', [OauthController::class, 'githubCallback']);
-// Route::get('auth/github/callback', [OauthController::class, 'googleCallback']);
 Route::get('auth/{provider}/callback', [OauthController::class, 'callback']);
 
 Route::prefix('dashboard')->group(function () {
