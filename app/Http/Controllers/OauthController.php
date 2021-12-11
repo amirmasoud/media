@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Enums\ProviderEnum;
 use App\Http\Requests\CallbackProviderRequest;
 use App\Models\User;
+use Exception;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use Laravel\Socialite\Facades\Socialite;
@@ -31,8 +32,8 @@ class OauthController extends Controller
         return match (ProviderEnum::from($request->provider)) {
             ProviderEnum::GOOGLE => $this->googleCallback(),
             ProviderEnum::GITHUB => $this->gitHubCallback(),
-            ProviderEnum::EMAIL => throw new \Exception('To be implemented'),
-            ProviderEnum::FACEBOOK => throw new \Exception('To be implemented'),
+            ProviderEnum::EMAIL => throw new Exception('To be implemented'),
+            ProviderEnum::FACEBOOK => throw new Exception('To be implemented'),
         };
     }
 
@@ -51,7 +52,7 @@ class OauthController extends Controller
             'email' => $user->email,
             'provider_id' => $user->id,
             'provider_token' => $user->token,
-            'provider_refresh_token' => $user->refreshToken,
+            'provider_refresh_token' => $user->refreshToken ?? null,
         ]);
 
         Auth::login($user);
@@ -71,7 +72,7 @@ class OauthController extends Controller
             'email' => $user->email,
             'provider_id' => $user->id,
             'provider_token' => $user->token,
-            'provider_refresh_token' => $user->refreshToken,
+            'provider_refresh_token' => $user->refreshToken ?? null,
         ]);
 
         Auth::login($user);
