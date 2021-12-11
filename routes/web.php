@@ -15,11 +15,11 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('login', [OauthController::class, 'links']);
+Route::get('login', [OauthController::class, 'links'])->name('login');
 Route::post('login', [OauthController::class, 'emailLogin']);
 Route::get('auth/{provider}/callback', [OauthController::class, 'callback']);
 
-Route::prefix('dashboard')->group(function () {
+Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::get('/', function () {
         return Inertia::render('Dashboard/Home');
     });
