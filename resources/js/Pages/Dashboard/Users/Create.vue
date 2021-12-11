@@ -51,7 +51,7 @@
           <div class="col-span-6 sm:col-span-4">
             <Button
               type="submit"
-              form="form"
+              :form="form"
             >
               Submit
             </Button>

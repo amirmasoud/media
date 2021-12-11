@@ -6,6 +6,7 @@ use App\Enums\ProviderEnum;
 use App\Http\Requests\CallbackProviderRequest;
 use App\Models\User;
 use Exception;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use Laravel\Socialite\Facades\Socialite;
@@ -78,5 +79,23 @@ class OauthController extends Controller
         Auth::login($user);
 
         return redirect($this->redirectTo);
+    }
+
+    protected function emailLogin(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+
+            return redirect()->intended('dashboard');
+        }
+
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ]);
     }
 }

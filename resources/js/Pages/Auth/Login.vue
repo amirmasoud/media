@@ -17,25 +17,16 @@
         <form
           class="space-y-6"
           action="#"
-          method="POST"
+          @submit.prevent="form.post('/login')"
         >
           <div>
-            <label
-              for="email"
-              class="block text-sm font-medium text-gray-700"
-            >
-              Email address
-            </label>
-            <div class="mt-1">
-              <input
-                id="email"
-                name="email"
-                type="email"
-                autocomplete="email"
-                required=""
-                class="block py-2 px-3 w-full sm:text-sm placeholder-gray-400 rounded-md border border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 shadow-sm appearance-none focus:outline-none"
-              >
-            </div>
+            <Input
+              v-model="form.email"
+              type="email"
+              :form="form"
+              label="Email"
+              name="email"
+            />
           </div>
 
           <div>
@@ -48,6 +39,7 @@
             <div class="mt-1">
               <input
                 id="password"
+                v-model="form.password"
                 name="password"
                 type="password"
                 autocomplete="current-password"
@@ -61,6 +53,7 @@
             <div class="flex items-center">
               <input
                 id="remember-me"
+                v-model="form.remember"
                 name="remember-me"
                 type="checkbox"
                 class="w-4 h-4 text-indigo-600 rounded border-gray-300 focus:ring-indigo-500"
@@ -84,12 +77,13 @@
           </div>
 
           <div>
-            <button
+            <Button
               type="submit"
-              class="flex justify-center py-2 px-4 w-full text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-md border border-transparent focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 shadow-sm focus:outline-none"
+              :form="form"
+              class="flex justify-center py-2 px-4 w-full"
             >
               Sign in
-            </button>
+            </Button>
           </div>
         </form>
 
@@ -157,9 +151,18 @@ import Facebook from "@/Components/Icons/Facebook";
 import Twitter from "@/Components/Icons/Twitter";
 import GitHub from "@/Components/Icons/GitHub";
 import Google from "@/Components/Icons/Google";
+import { useForm } from "@inertiajs/inertia-vue3";
+import Input from "@/Components/Forms/Inputs/Input";
+import Button from "@/Components/Forms/Buttons/Button";
 
 defineProps({
   'github': String,
   'google': String,
+});
+
+let form = useForm({
+  email: null,
+  password: null,
+  remember: false,
 });
 </script>
