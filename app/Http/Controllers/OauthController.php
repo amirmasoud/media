@@ -81,7 +81,7 @@ class OauthController extends Controller
         return redirect($this->redirectTo);
     }
 
-    protected function emailLogin(Request $request)
+    protected function emailLogin(Request $request): \Illuminate\Http\RedirectResponse
     {
         $credentials = $request->validate([
             'email' => ['required', 'email'],
@@ -97,5 +97,22 @@ class OauthController extends Controller
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
         ]);
+    }
+
+    public function registerForm(Request $request)
+    {
+        return Inertia::render('Auth/Register');
+    }
+
+    public function emailRegister(Request $request)
+    {
+        $validated = $request->validate([
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:6',
+            'password_confirmation' => 'required|password_confirmation',
+            'name' => 'required|max:255',
+        ]);
+
+        dd($validated);
     }
 }

@@ -17,6 +17,9 @@ use Inertia\Inertia;
 
 Route::get('login', [OauthController::class, 'links'])->name('login');
 Route::post('login', [OauthController::class, 'emailLogin']);
+Route::get('register', [OauthController::class, 'registerForm'])->name('register');
+Route::post('register', [OauthController::class, 'emailRegister']);
+
 Route::get('auth/{provider}/callback', [OauthController::class, 'callback']);
 
 Route::prefix('dashboard')->middleware('auth')->group(function () {

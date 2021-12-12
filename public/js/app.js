@@ -710,6 +710,14 @@ var map = {
 		"./resources/js/Pages/Auth/Login.vue",
 		"resources_js_Pages_Auth_Login_vue"
 	],
+	"./Auth/Register": [
+		"./resources/js/Pages/Auth/Register.vue",
+		"resources_js_Pages_Auth_Register_vue"
+	],
+	"./Auth/Register.vue": [
+		"./resources/js/Pages/Auth/Register.vue",
+		"resources_js_Pages_Auth_Register_vue"
+	],
 	"./Dashboard/Home": [
 		"./resources/js/Pages/Dashboard/Home.vue",
 		"resources_js_Pages_Dashboard_Home_vue"
