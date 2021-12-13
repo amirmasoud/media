@@ -490,40 +490,7 @@ var _hoisted_4 = {
   "class": "py-8 px-4 sm:px-10 bg-white sm:rounded-lg shadow"
 };
 
-var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "for": "name",
-  "class": "block text-sm font-medium text-gray-700"
-}, " Name ", -1
-/* HOISTED */
-);
-
-var _hoisted_6 = {
-  "class": "mt-1"
-};
-
-var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "for": "password",
-  "class": "block text-sm font-medium text-gray-700"
-}, " Password ", -1
-/* HOISTED */
-);
-
-var _hoisted_8 = {
-  "class": "mt-1"
-};
-
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "for": "password_confirmation",
-  "class": "block text-sm font-medium text-gray-700"
-}, " Password confirmation ", -1
-/* HOISTED */
-);
-
-var _hoisted_10 = {
-  "class": "mt-1"
-};
-
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "flex justify-center items-center"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "text-sm"
@@ -534,50 +501,50 @@ var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Register ");
+var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Register ");
 
-var _hoisted_13 = {
+var _hoisted_7 = {
   "class": "mt-6"
 };
 
-var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"relative\"><div class=\"flex absolute inset-0 items-center\"><div class=\"w-full border-t border-gray-300\"></div></div><div class=\"flex relative justify-center text-sm\"><span class=\"px-2 text-gray-500 bg-white\"> Or continue with </span></div></div>", 1);
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"relative\"><div class=\"flex absolute inset-0 items-center\"><div class=\"w-full border-t border-gray-300\"></div></div><div class=\"flex relative justify-center text-sm\"><span class=\"px-2 text-gray-500 bg-white\"> Or continue with </span></div></div>", 1);
 
-var _hoisted_15 = {
+var _hoisted_9 = {
   "class": "grid grid-cols-3 gap-3 mt-6"
 };
-var _hoisted_16 = {
+var _hoisted_10 = {
   href: "#",
   "class": "inline-flex justify-center py-2 px-4 w-full text-sm font-medium text-gray-500 bg-white hover:bg-gray-50 rounded-md border border-gray-300 shadow-sm"
 };
 
-var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "sr-only"
 }, "Sign in with Facebook", -1
 /* HOISTED */
 );
 
-var _hoisted_18 = {
+var _hoisted_12 = {
   href: "#",
   "class": "inline-flex justify-center py-2 px-4 w-full text-sm font-medium text-gray-500 bg-white hover:bg-gray-50 rounded-md border border-gray-300 shadow-sm"
 };
 
-var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "sr-only"
 }, "Sign in with Twitter", -1
 /* HOISTED */
 );
 
-var _hoisted_20 = ["href"];
+var _hoisted_14 = ["href"];
 
-var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "sr-only"
 }, "Sign in with GitHub", -1
 /* HOISTED */
 );
 
-var _hoisted_22 = ["href"];
+var _hoisted_16 = ["href"];
 
-var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "sr-only"
 }, "Sign in with Google", -1
 /* HOISTED */
@@ -587,25 +554,24 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Head = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Head");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Head, {
-    title: "Login"
+    title: "Register"
   }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
     "class": "space-y-6",
     action: "#",
     onSubmit: _cache[4] || (_cache[4] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
-      return $setup.form.post('/login');
+      return $setup.form.post('/register');
     }, ["prevent"]))
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-    id: "name",
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Input"], {
+    modelValue: $setup.form.name,
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
       return $setup.form.name = $event;
     }),
-    name: "name",
-    autocomplete: "name",
-    required: "required",
-    "class": "block py-2 px-3 w-full sm:text-sm placeholder-gray-400 rounded-md border border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 shadow-sm appearance-none focus:outline-none"
-  }, null, 512
-  /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.name]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Input"], {
+    form: $setup.form,
+    label: "Name",
+    name: "name"
+  }, null, 8
+  /* PROPS */
+  , ["modelValue", "form"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Input"], {
     modelValue: $setup.form.email,
     "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
       return $setup.form.email = $event;
@@ -616,37 +582,35 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     name: "email"
   }, null, 8
   /* PROPS */
-  , ["modelValue", "form"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-    id: "password",
+  , ["modelValue", "form"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Input"], {
+    modelValue: $setup.form.password,
     "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
       return $setup.form.password = $event;
     }),
-    name: "password",
     type: "password",
-    autocomplete: "current-password",
-    required: "required",
-    "class": "block py-2 px-3 w-full sm:text-sm placeholder-gray-400 rounded-md border border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 shadow-sm appearance-none focus:outline-none"
-  }, null, 512
-  /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.password]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-    id: "password_confirmation",
+    form: $setup.form,
+    label: "Password",
+    name: "password"
+  }, null, 8
+  /* PROPS */
+  , ["modelValue", "form"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Input"], {
+    modelValue: $setup.form.password_confirmation,
     "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
       return $setup.form.password_confirmation = $event;
     }),
-    name: "password_confirmation",
     type: "password",
-    autocomplete: "current-password",
-    required: "required",
-    "class": "block py-2 px-3 w-full sm:text-sm placeholder-gray-400 rounded-md border border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 shadow-sm appearance-none focus:outline-none"
-  }, null, 512
-  /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.password_confirmation]])])]), _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Button"], {
+    form: $setup.form,
+    label: "Password confirmation",
+    name: "password_confirmation"
+  }, null, 8
+  /* PROPS */
+  , ["modelValue", "form"])]), _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Button"], {
     type: "submit",
     form: $setup.form,
     "class": "flex justify-center py-2 px-4 w-full"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_12];
+      return [_hoisted_6];
     }),
     _: 1
     /* STABLE */
@@ -655,25 +619,25 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* PROPS */
   , ["form"])])], 32
   /* HYDRATE_EVENTS */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [_hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_16, [_hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Facebook"], {
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_10, [_hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Facebook"], {
     "class": "w-5 h-5"
-  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_18, [_hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Twitter"], {
+  })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_12, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Twitter"], {
     "class": "w-5 h-5"
   })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     href: $props.github,
     "class": "inline-flex justify-center py-2 px-4 w-full text-sm font-medium text-gray-500 bg-white hover:bg-gray-50 rounded-md border border-gray-300 shadow-sm"
-  }, [_hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["GitHub"], {
+  }, [_hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["GitHub"], {
     "class": "w-5 h-5"
   })], 8
   /* PROPS */
-  , _hoisted_20)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+  , _hoisted_14)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     href: $props.google,
     "class": "inline-flex justify-center py-2 px-4 w-full text-sm font-medium text-gray-500 bg-white hover:bg-gray-50 rounded-md border border-gray-300 shadow-sm"
-  }, [_hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Google"], {
+  }, [_hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Google"], {
     "class": "w-5 h-5"
   })], 8
   /* PROPS */
-  , _hoisted_22)])])])])])])], 64
+  , _hoisted_16)])])])])])])], 64
   /* STABLE_FRAGMENT */
   );
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\ProviderEnum;
+use App\Http\Requests\Auth\RegisterWithEmailRequest;
 use App\Http\Requests\CallbackProviderRequest;
 use App\Models\User;
 use Exception;
@@ -15,7 +16,7 @@ class OauthController extends Controller
 {
     public string $redirectTo = '/dashboard';
 
-    public function links(): \Inertia\Response
+    public function loginForm(): \Inertia\Response
     {
         return Inertia::render('Auth/Login', [
             'github' => Socialite::driver('github')->redirect()->getTargetUrl(),
@@ -81,7 +82,7 @@ class OauthController extends Controller
         return redirect($this->redirectTo);
     }
 
-    protected function emailLogin(Request $request): \Illuminate\Http\RedirectResponse
+    protected function loginWithEmail(Request $request): \Illuminate\Http\RedirectResponse
     {
         $credentials = $request->validate([
             'email' => ['required', 'email'],
@@ -99,20 +100,34 @@ class OauthController extends Controller
         ]);
     }
 
-    public function registerForm(Request $request)
+    public function registerWithEmailForm(Request $request)
     {
         return Inertia::render('Auth/Register');
     }
 
-    public function emailRegister(Request $request)
+    public function registerWithEmail(RegisterWithEmailRequest $request)
     {
-        $validated = $request->validate([
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:6',
-            'password_confirmation' => 'required|password_confirmation',
-            'name' => 'required|max:255',
-        ]);
+        User::create($request->validated());
 
-        dd($validated);
+        if (Auth::attempt($request->validated())) {
+            $request->session()->regenerate();
+
+            return redirect()->intended('dashboard');
+        }
+
+        return redirect()->route('login')->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ]);
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/login')->with('info', 'Successfully singed out.');
     }
 }

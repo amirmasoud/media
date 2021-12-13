@@ -1,5 +1,5 @@
 <template>
-  <Head title="Login" />
+  <Head title="Register" />
   <div class="flex flex-col justify-center py-12 sm:px-6 lg:px-8 min-h-screen bg-gray-50">
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
       <img
@@ -17,25 +17,15 @@
         <form
           class="space-y-6"
           action="#"
-          @submit.prevent="form.post('/login')"
+          @submit.prevent="form.post('/register')"
         >
           <div>
-            <label
-              for="name"
-              class="block text-sm font-medium text-gray-700"
-            >
-              Name
-            </label>
-            <div class="mt-1">
-              <input
-                id="name"
-                v-model="form.name"
-                name="name"
-                autocomplete="name"
-                required="required"
-                class="block py-2 px-3 w-full sm:text-sm placeholder-gray-400 rounded-md border border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 shadow-sm appearance-none focus:outline-none"
-              >
-            </div>
+            <Input
+              v-model="form.name"
+              :form="form"
+              label="Name"
+              name="name"
+            />
           </div>
 
           <div>
@@ -49,43 +39,23 @@
           </div>
 
           <div>
-            <label
-              for="password"
-              class="block text-sm font-medium text-gray-700"
-            >
-              Password
-            </label>
-            <div class="mt-1">
-              <input
-                id="password"
-                v-model="form.password"
-                name="password"
-                type="password"
-                autocomplete="current-password"
-                required="required"
-                class="block py-2 px-3 w-full sm:text-sm placeholder-gray-400 rounded-md border border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 shadow-sm appearance-none focus:outline-none"
-              >
-            </div>
+            <Input
+              v-model="form.password"
+              type="password"
+              :form="form"
+              label="Password"
+              name="password"
+            />
           </div>
 
           <div>
-            <label
-              for="password_confirmation"
-              class="block text-sm font-medium text-gray-700"
-            >
-              Password confirmation
-            </label>
-            <div class="mt-1">
-              <input
-                id="password_confirmation"
-                v-model="form.password_confirmation"
-                name="password_confirmation"
-                type="password"
-                autocomplete="current-password"
-                required="required"
-                class="block py-2 px-3 w-full sm:text-sm placeholder-gray-400 rounded-md border border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 shadow-sm appearance-none focus:outline-none"
-              >
-            </div>
+            <Input
+              v-model="form.password_confirmation"
+              type="password"
+              :form="form"
+              label="Password confirmation"
+              name="password_confirmation"
+            />
           </div>
 
           <div class="flex justify-center items-center">

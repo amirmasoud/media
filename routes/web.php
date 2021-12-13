@@ -15,12 +15,14 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('login', [OauthController::class, 'links'])->name('login');
-Route::post('login', [OauthController::class, 'emailLogin']);
-Route::get('register', [OauthController::class, 'registerForm'])->name('register');
-Route::post('register', [OauthController::class, 'emailRegister']);
-
-Route::get('auth/{provider}/callback', [OauthController::class, 'callback']);
+Route::middleware('guest')->group(function () {
+    Route::get('login', [OauthController::class, 'loginForm'])->name('login');
+    Route::post('login', [OauthController::class, 'loginWithEmail']);
+    Route::get('register', [OauthController::class, 'registerWithEmailForm'])->name('register');
+    Route::post('register', [OauthController::class, 'registerWithEmail']);
+    Route::get('auth/{provider}/callback', [OauthController::class, 'callback']);
+});
+Route::post('logout', [OauthController::class, 'logout'])->middleware('auth')->name('logout');
 
 Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::get('/', function () {
