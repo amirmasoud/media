@@ -128,6 +128,6 @@ class OauthController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/login')->with('info', 'Successfully singed out.');
+        return redirect('/login')->with('message', 'Successfully singed out.');
     }
 }
