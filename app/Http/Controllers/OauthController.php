@@ -109,7 +109,7 @@ class OauthController extends Controller
     {
         User::create($request->validated());
 
-        if (Auth::attempt($request->validated())) {
+        if (Auth::attempt($request->only('email', 'password'))) {
             $request->session()->regenerate();
 
             return redirect()->intended('dashboard');
