@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\OauthController;
+use App\UI\DashboardHeading\Button as DashboardHeadingButton;
+use App\UI\DashboardHeading\Item as DashboardHeadingItem;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -28,6 +30,49 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
         return Inertia::render('Dashboard/Users/Index', [
             'users' => \App\Http\Resources\UserResource::collection($users),
             'filters' => Request::only('search'),
+            'table' => [
+                'fields' => [
+                    'name' => [
+                        'label' => 'name',
+                    ],
+                    'email' => [
+                        'label' => 'Email',
+                    ],
+                    'email_verified_at' => [
+                        'label' => 'email_verified_at',
+                    ]
+                ],
+                'actions' => [
+                    'edit' => [
+                        'label' => 'Edit',
+                    ],
+                    'delete' => [
+                        'label' => 'Delete',
+                    ],
+                ],
+            ],
+            'dashboardHeadings' => [
+                'items' => DashboardHeadingItem::collection([
+                    [
+                        'link' => '/dashboard',
+                        'label' => 'Dashboard',
+                    ],
+                    [
+                        'link' => '/dashboard/users',
+                        'label' => 'Users',
+                    ],
+                    [
+                        'link' => '#',
+                        'label' => 'List',
+                    ],
+                ]),
+                'buttons' => DashboardHeadingButton::collection([
+                    [
+                        'link' => '/dashboard/users/create',
+                        'label' => 'Create a New User',
+                    ]
+                ])
+            ]
         ]);
     });
 

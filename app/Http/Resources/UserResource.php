@@ -2,6 +2,8 @@
 
 namespace App\Http\Resources;
 
+use App\UI\DashboardHeading\Button as DashboardHeadingButton;
+use App\UI\DashboardHeading\Item as DashboardHeadingItem;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**

@@ -204,24 +204,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _Components_Table__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Components/Table */ "./resources/js/Components/Table.vue");
-/* harmony import */ var _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @heroicons/vue/solid */ "./node_modules/@heroicons/vue/solid/esm/index.js");
-/* harmony import */ var _Components_DashboardHeading__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Components/DashboardHeading */ "./resources/js/Components/DashboardHeading.vue");
-
+/* harmony import */ var _Components_DashboardHeading__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Components/DashboardHeading */ "./resources/js/Components/DashboardHeading.vue");
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     users: Object,
-    filters: Object
+    filters: Object,
+    dashboardHeadings: Object,
+    table: Object
   },
   setup: function setup(__props, _ref) {
     var expose = _ref.expose;
     expose();
     var __returned__ = {
       Table: _Components_Table__WEBPACK_IMPORTED_MODULE_0__["default"],
-      ChevronLeftIcon: _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_1__.ChevronLeftIcon,
-      ChevronRightIcon: _heroicons_vue_solid__WEBPACK_IMPORTED_MODULE_1__.ChevronRightIcon,
-      DashboardHeading: _Components_DashboardHeading__WEBPACK_IMPORTED_MODULE_2__["default"]
+      DashboardHeading: _Components_DashboardHeading__WEBPACK_IMPORTED_MODULE_1__["default"]
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
       enumerable: false,
@@ -733,47 +731,20 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DashboardHeading"], {
     "class": "mb-6",
-    items: [{
-      link: '/dashboard',
-      label: 'Dashboard'
-    }, {
-      link: '/dashboard/users',
-      label: 'Users'
-    }, {
-      link: '#',
-      label: 'List'
-    }],
+    items: $props.dashboardHeadings.items,
     header: "Users",
-    buttons: [{
-      link: '/dashboard/users/create',
-      label: 'Create a New User'
-    }]
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Table"], {
+    buttons: $props.dashboardHeadings.buttons
+  }, null, 8
+  /* PROPS */
+  , ["items", "buttons"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Table"], {
     records: $props.users,
     filters: $props.filters,
     endpoint: "/dashboard/users",
-    fields: {
-      name: {
-        label: 'Name'
-      },
-      email: {
-        label: 'Email'
-      },
-      email_verified_at: {
-        label: 'Email Verified At'
-      }
-    },
-    actions: {
-      edit: {
-        label: 'Edit'
-      },
-      "delete": {
-        label: 'Delete'
-      }
-    }
+    fields: $props.table.fields,
+    actions: $props.table.actions
   }, null, 8
   /* PROPS */
-  , ["records", "filters"])], 64
+  , ["records", "filters", "fields", "actions"])], 64
   /* STABLE_FRAGMENT */
   );
 }

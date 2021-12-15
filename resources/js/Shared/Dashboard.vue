@@ -107,7 +107,7 @@
                 v-for="item in navigation"
                 :key="item.name"
                 :href="item.href"
-                :class="[$page.url === item.href ? 'bg-indigo-800 text-white' : 'text-indigo-100 hover:bg-indigo-600', 'group flex items-center px-2 py-2 text-sm font-medium rounded-md']"
+                :class="[$page.url.startsWith(item.href) ? 'bg-indigo-800 text-white' : 'text-indigo-100 hover:bg-indigo-600', 'group flex items-center px-2 py-2 text-sm font-medium rounded-md']"
               >
                 <component
                   :is="item.icon"
