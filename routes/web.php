@@ -4,17 +4,7 @@ use App\Http\Controllers\OauthController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
+// Auth routes
 Route::middleware('guest')->group(function () {
     Route::get('login', [OauthController::class, 'loginForm'])->name('login');
     Route::post('login', [OauthController::class, 'loginWithEmail']);

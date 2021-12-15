@@ -734,18 +734,18 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DashboardHeading"], {
     "class": "mb-6",
     items: [{
-      link: 'dashboard',
+      link: '/dashboard',
       label: 'Dashboard'
     }, {
-      link: 'dashboard/users',
+      link: '/dashboard/users',
       label: 'Users'
     }, {
-      link: 'dashboard/users/index',
+      link: '#',
       label: 'List'
     }],
     header: "Users",
     buttons: [{
-      link: 'dashboard/users/create',
+      link: '/dashboard/users/create',
       label: 'Create a New User'
     }]
   }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Table"], {

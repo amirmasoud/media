@@ -1,19 +1,28 @@
 <template>
-  <div class="md:flex md:justify-between md:items-center mt-2">
-    <div class="flex-1 min-w-0">
-      <h2 class="text-2xl sm:text-3xl font-bold leading-7 text-gray-900 sm:truncate">
-        Create a new user
-      </h2>
-    </div>
-    <div class="flex flex-shrink-0 mt-4 md:mt-0 md:ml-4">
-      <Link
-        href="/dashboard/users"
-        class="inline-flex items-center py-2 px-4 ml-3 text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-md border border-transparent focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 shadow-sm focus:outline-none"
-      >
-        Users list
-      </Link>
-    </div>
-  </div>
+  <DashboardHeading
+    class="mb-6"
+    :items="[
+      {
+        link: '/dashboard',
+        label: 'Dashboard',
+      },
+      {
+        link: '/dashboard/users',
+        label: 'Users',
+      },
+      {
+        link: '#',
+        label: 'List'
+      }
+    ]"
+    header="Users"
+    :buttons="[
+      {
+        link: '/dashboard/users',
+        label: 'List of Users',
+      },
+    ]"
+  />
 
   <form @submit.prevent="form.post('/dashboard/users')">
     <div class="overflow-hidden sm:rounded-md shadow">
@@ -62,28 +71,15 @@
   </form>
 </template>
 
-<script>
+<script setup>
 import { useForm } from '@inertiajs/inertia-vue3';
 import Input from "@/Components/Forms/Inputs/Input";
 import Button from "@/Components/Forms/Buttons/Button";
-import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/vue/solid';
+import DashboardHeading from "@/Components/DashboardHeading";
 
-export default {
-  components: {
-    Button,
-    Input,
-    ChevronLeftIcon,
-    ChevronRightIcon
-  },
-
-  setup () {
-    const form = useForm({
-      email: null,
-      password: null,
-      name: null,
-    });
-
-    return { form };
-  },
-};
+let form = useForm({
+  email: null,
+  password: null,
+  name: null,
+});
 </script>

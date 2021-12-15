@@ -6,22 +6,22 @@
     class="mb-6"
     :items="[
       {
-        link: 'dashboard',
+        link: '/dashboard',
         label: 'Dashboard',
       },
       {
-        link: 'dashboard/users',
+        link: '/dashboard/users',
         label: 'Users',
       },
       {
-        link: 'dashboard/users/index',
+        link: '#',
         label: 'List'
       }
     ]"
     header="Users"
     :buttons="[
       {
-        link: 'dashboard/users/create',
+        link: '/dashboard/users/create',
         label: 'Create a New User',
       },
     ]"
