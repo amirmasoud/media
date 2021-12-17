@@ -32,22 +32,29 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
             'filters' => Request::only('search'),
             'table' => [
                 'fields' => [
-                    'name' => [
+                    [
+                        'name' => 'name',
                         'label' => 'name',
                     ],
-                    'email' => [
+                    [
+                        'name' => 'email',
                         'label' => 'Email',
                     ],
-                    'email_verified_at' => [
+                    [
+                        'name' => 'email_verified_at',
                         'label' => 'email_verified_at',
                     ]
                 ],
                 'actions' => [
-                    'edit' => [
+                    [
+                        'name' => 'edit',
                         'label' => 'Edit',
+                        'link' => '/dashboard/users/{user}/edit',
                     ],
-                    'delete' => [
+                    [
+                        'name' => 'delete',
                         'label' => 'Delete',
+                        'link' => '/dashboard/users/{user}/delete',
                     ],
                 ],
             ],
@@ -91,6 +98,10 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::get('/users/create', function () {
         return Inertia::render('Dashboard/Users/Create');
     });
+
+    Route::get('/users/edit/{user}', function () {
+        return Inertia::render('Dashboard/Users/Edit');
+    })->name('dashboard.users.edit');
 
     Route::get('/settings', function () {
         return Inertia::render('Dashboard/Settings');
