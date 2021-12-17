@@ -243,7 +243,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     value: $props.modelValue,
     type: $props.type,
     name: $props.name,
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["shadow-sm block w-full sm:text-sm rounded-md", [$props.hasError || !!$props.form.errors[$props.name] ? 'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500' : 'focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 ']]),
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["block w-full sm:text-sm rounded-md shadow-sm", [$props.hasError || !!$props.form.errors[$props.name] ? 'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500' : 'focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 ']]),
     placeholder: $props.placeholder,
     onInput: _cache[0] || (_cache[0] = function ($event) {
       return _ctx.$emit('update:modelValue', $event.target.value);

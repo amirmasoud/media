@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\OauthController;
+use App\Models\User;
 use App\UI\DashboardHeading\Button as DashboardHeadingButton;
 use App\UI\DashboardHeading\Item as DashboardHeadingItem;
 use Illuminate\Support\Facades\Route;
@@ -99,9 +100,11 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
         return Inertia::render('Dashboard/Users/Create');
     });
 
-    Route::get('/users/edit/{user}', function () {
-        return Inertia::render('Dashboard/Users/Edit');
-    })->name('dashboard.users.edit');
+    Route::get('/users/{user}/edit', function (User $user) {
+        return Inertia::render('Dashboard/Users/Edit', [
+            'resource' => $user,
+        ]);
+    });
 
     Route::get('/settings', function () {
         return Inertia::render('Dashboard/Settings');

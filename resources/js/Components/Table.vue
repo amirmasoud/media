@@ -34,7 +34,7 @@
           <Link
             v-for="action in actions"
             :key="action.name"
-            :href="action.link"
+            :href="action.link.replace('{user}', record.id)"
             class="text-indigo-600 hover:text-indigo-900"
           >
             {{ action.label }}

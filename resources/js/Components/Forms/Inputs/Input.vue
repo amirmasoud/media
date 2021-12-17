@@ -9,7 +9,7 @@
       :value="modelValue"
       :type="type"
       :name="name"
-      class="shadow-sm block w-full sm:text-sm rounded-md"
+      class="block w-full sm:text-sm rounded-md shadow-sm"
       :class="[hasError || !!form.errors[name] ? 'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500' : 'focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 ']"
       :placeholder="placeholder"
       @input="$emit('update:modelValue', $event.target.value)"

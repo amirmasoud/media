@@ -847,6 +847,14 @@ var map = {
 		"./resources/js/Pages/Dashboard/Users/Create.vue",
 		"resources_js_Pages_Dashboard_Users_Create_vue"
 	],
+	"./Dashboard/Users/Edit": [
+		"./resources/js/Pages/Dashboard/Users/Edit.vue",
+		"resources_js_Pages_Dashboard_Users_Edit_vue"
+	],
+	"./Dashboard/Users/Edit.vue": [
+		"./resources/js/Pages/Dashboard/Users/Edit.vue",
+		"resources_js_Pages_Dashboard_Users_Edit_vue"
+	],
 	"./Dashboard/Users/Index": [
 		"./resources/js/Pages/Dashboard/Users/Index.vue",
 		"/js/vendor",
