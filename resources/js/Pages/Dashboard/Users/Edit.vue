@@ -15,7 +15,7 @@
         label: 'Edit'
       }
     ]"
-    header="Users"
+    header="Edit user"
     :buttons="[
       {
         link: '/dashboard/users',

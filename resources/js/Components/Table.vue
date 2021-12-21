@@ -31,14 +31,27 @@
           {{ record[field.name] }}
         </td>
         <td class="py-4 px-6 space-x-6 text-sm font-medium text-right whitespace-nowrap">
-          <Link
+          <button
             v-for="action in actions"
             :key="action.name"
-            :href="action.link.replace('{user}', record.id)"
             class="text-indigo-600 hover:text-indigo-900"
+            @click="confirmDialog = ! confirmDialog"
           >
             {{ action.label }}
-          </Link>
+            {{ confirmDialog }}
+            <Dialog
+              :dialog="action.dialog"
+              :confirm-dialog="confirmDialog"
+            />
+          </button>
+          <!--          <Link-->
+          <!--            v-for="action in actions"-->
+          <!--            :key="action.name"-->
+          <!--            :href="action.link.replace('{user}', record.id)"-->
+          <!--            class="text-indigo-600 hover:text-indigo-900"-->
+          <!--          >-->
+          <!--            {{ action.label }}-->
+          <!--          </Link>-->
         </td>
       </tr>
     </tbody>
@@ -81,6 +94,7 @@
 import { ref, watch } from 'vue';
 import { Inertia } from '@inertiajs/inertia';
 import Paginator from '@/Components/Paginator';
+import Dialog from '@/Components/Dialog';
 import debounce from "lodash/debounce";
 
 let props = defineProps({
@@ -97,6 +111,7 @@ let props = defineProps({
 });
 
 let search = ref(props.filters.search);
+let confirmDialog = ref(false);
 
 watch(search, debounce(function (value) {
   Inertia.get(props.endpoint, { ...(value !== '' && { search : value }) }, { preserveState: true, replace: true });

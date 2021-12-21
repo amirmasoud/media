@@ -50,12 +50,33 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
                     [
                         'name' => 'edit',
                         'label' => 'Edit',
-                        'link' => '/dashboard/users/{user}/edit',
+                        'dialog' => [
+                            'title' => 'Deactivate account',
+                            'body' => 'Are you sure you want to deactivate your account? All of your data will be permanently removed from our servers forever. This action cannot be undone.',
+                            'buttons' => DashboardHeadingButton::collection([
+                                [
+                                    'link' => '/dashboard/users/{user}/edit',
+                                    'label' => 'Deactivate',
+                                ],
+                                [
+                                    'label' => 'Cancel',
+                                ]
+                            ])
+                        ]
                     ],
                     [
                         'name' => 'delete',
                         'label' => 'Delete',
-                        'link' => '/dashboard/users/{user}/delete',
+                        // 'link' => '/dashboard/users/{user}/delete',
+                        'buttons' => DashboardHeadingButton::collection([
+                            [
+                                'link' => '/dashboard/users/{user}/edit',
+                                'label' => 'Deactivate',
+                            ],
+                            [
+                                'label' => 'Cancel',
+                            ]
+                        ])
                     ],
                 ],
             ],
@@ -84,17 +105,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
         ]);
     });
 
-    Route::post('/users', function () {
-        $validated = Validator::validate(Request::all(), [
-            'name' => 'required',
-            'email' => 'required|email',
-            'password' => 'required|min:6',
-        ]);
-
-        \App\Models\User::create($validated);
-
-        return redirect()->to('/dashboard/users');
-    });
+    Route::post('/users', [\App\Http\Controllers\Dashboard\UserController::class, 'store']);
 
     Route::get('/users/create', function () {
         return Inertia::render('Dashboard/Users/Create');
@@ -102,8 +113,14 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
 
     Route::get('/users/{user}/edit', function (User $user) {
         return Inertia::render('Dashboard/Users/Edit', [
-            'resource' => $user,
+            'resource' => new \App\Http\Resources\UserResource($user),
         ]);
+    });
+
+    Route::get('/users/{user}/delete', function (User $user) {
+        $user->delete();
+
+        return redirect()->back();
     });
 
     Route::get('/settings', function () {

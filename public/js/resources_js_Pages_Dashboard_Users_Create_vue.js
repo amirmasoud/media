@@ -511,9 +511,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       label: 'Users'
     }, {
       link: '#',
-      label: 'List'
+      label: 'Create'
     }],
-    header: "Users",
+    header: "Create a new user",
     buttons: [{
       link: '/dashboard/users',
       label: 'List of Users'

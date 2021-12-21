@@ -514,7 +514,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       link: '#',
       label: 'Edit'
     }],
-    header: "Users",
+    header: "Edit user",
     buttons: [{
       link: '/dashboard/users',
       label: 'List of Users'

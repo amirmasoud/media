@@ -12,10 +12,10 @@
       },
       {
         link: '#',
-        label: 'List'
+        label: 'Create'
       }
     ]"
-    header="Users"
+    header="Create a new user"
     :buttons="[
       {
         link: '/dashboard/users',
